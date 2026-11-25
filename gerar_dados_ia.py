@@ -28,14 +28,24 @@ def conectar_sheets():
 
 df = conectar_sheets()
 
-def parse_br(serie):
-    return pd.to_numeric(
-        serie.astype(str).str.replace('.', '', regex=False).str.replace(',', '.', regex=False),
-        errors='coerce'
-    ).fillna(0.0)
+def parse_numero(val):
+    if isinstance(val, (int, float)):
+        return float(val)
+    s = str(val).strip().replace('R$', '').strip()
+    if not s:
+        return 0.0
+    # Se tem vírgula e ponto (ex: "1.250,50"), remove ponto de milhar e troca vírgula por ponto
+    if ',' in s and '.' in s:
+        s = s.replace('.', '').replace(',', '.')
+    elif ',' in s:
+        s = s.replace(',', '.')
+    try:
+        return float(s)
+    except ValueError:
+        return 0.0
 
-df['VENDA'] = parse_br(df['VENDA TOTAL'])
-df['CUSTO'] = parse_br(df['CUSTO TOTAL'])
+df['VENDA'] = df['VENDA TOTAL'].apply(parse_numero)
+df['CUSTO'] = df['CUSTO TOTAL'].apply(parse_numero)
 df['QTD'] = pd.to_numeric(df['QTD'], errors='coerce').fillna(0).astype(int)
 
 # Trata datas tanto no formato M/D/YYYY quanto DD/MM/YYYY
