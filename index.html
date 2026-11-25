@@ -289,6 +289,7 @@ Diretrizes:
         // text/plain evita preflight OPTIONS (CORS) no Google Apps Script
         const resp = await fetch(APPS_SCRIPT_PROXY_URL, {
           method: 'POST',
+          redirect: 'follow',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
             modelo: modelo,
