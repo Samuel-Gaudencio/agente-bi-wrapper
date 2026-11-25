@@ -3,13 +3,440 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agente BI</title>
+  <title>Assistente de Análise BI</title>
   <style>
-    html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #f8f9fa; }
-    iframe { width: 100%; height: 100%; border: none; }
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 14px 12px;
+      background-color: #041836;
+      color: #e6e9ef;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+      gap: 6px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #63a4e6;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .title svg {
+      width: 15px;
+      height: 15px;
+      fill: #63a4e6;
+      flex-shrink: 0;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .icon-btn {
+      background: #101417;
+      border: 1px solid #233b56;
+      color: #63a4e6;
+      border-radius: 6px;
+      padding: 3px 7px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .icon-btn:hover {
+      border-color: #63a4e6;
+    }
+
+    /* Modal simples para configurar a API Key uma única vez no navegador */
+    .config-bar {
+      display: none;
+      background: #101417;
+      border: 1px solid #3c6997;
+      border-radius: 8px;
+      padding: 8px;
+      margin-bottom: 10px;
+      gap: 6px;
+      flex-direction: column;
+    }
+
+    .config-bar.open {
+      display: flex;
+    }
+
+    .config-bar input {
+      background: #041836;
+      border: 1px solid #233b56;
+      color: #e6e9ef;
+      padding: 6px 8px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      outline: none;
+    }
+
+    .config-bar button {
+      background: #2b5482;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      cursor: pointer;
+    }
+
+    .scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-right: 2px;
+    }
+
+    .scroll-area::-webkit-scrollbar { width: 4px; }
+    .scroll-area::-webkit-scrollbar-thumb { background: #1d3b5e; border-radius: 4px; }
+
+    .section-label {
+      color: #5b9bd5;
+      font-size: 11.5px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .card-insight {
+      background-color: #111417;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #e2e6ec;
+      white-space: pre-wrap;
+    }
+
+    .card-insight.muted { color: #c2c8d0; }
+
+    .card-user {
+      background-color: #0b2952;
+      border: 1px solid #2b5482;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 12px;
+      line-height: 1.4;
+      color: #ffffff;
+      align-self: flex-end;
+      max-width: 90%;
+    }
+
+    .suggestions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 6px;
+    }
+
+    .suggestion-btn {
+      width: 100%;
+      text-align: left;
+      background-color: #111417;
+      border: 1px solid #3c6997;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #63a4e6;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .suggestion-btn:hover { background-color: #18222d; border-color: #63a4e6; }
+    .suggestion-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .input-box {
+      margin-top: 10px;
+      background-color: #111417;
+      border: 1px solid #3c6997;
+      border-radius: 8px;
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .input-box textarea {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #e6e9ef;
+      font-size: 12px;
+      line-height: 1.35;
+      resize: none;
+      height: 32px;
+      outline: none;
+      padding: 0;
+    }
+
+    .input-box textarea::placeholder { color: #8a8f98; }
+
+    .send-btn {
+      background: transparent;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .send-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: #5b9bd5;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .send-btn:disabled svg { stroke: #4c5663; cursor: not-allowed; }
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycbw5Gi_wh0jyy6cMOINeO93TruNVxSqVQA9cEGg6-IjNgijofUR-t_H1M370aTw5nKUTMw/exec" allow="clipboard-read; clipboard-write"></iframe>
+
+  <div class="header">
+    <div class="title">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 2L11.8 7.2L17 9L11.8 10.8L10 16L8.2 10.8L3 9L8.2 7.2L10 2ZM18 14L19 16.8L21.8 17.8L19 18.8L18 21.6L17 18.8L14.2 17.8L17 16.8L18 14Z"/>
+      </svg>
+      <span>Assistente de análise</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="novaConversa()" title="Limpar conversa">↻</button>
+      <button class="icon-btn" onclick="toggleConfig()" title="Configurar API Key">🔑</button>
+    </div>
+  </div>
+
+  <!-- Painel discreto para salvar a API Key localmente no navegador (não fica exposta no GitHub) -->
+  <div class="config-bar" id="configBar">
+    <input type="password" id="apiKeyInput" placeholder="Cole sua GEMINI_API_KEY aqui">
+    <button onclick="salvarChave()">Salvar Chave no Navegador</button>
+  </div>
+
+  <div class="scroll-area" id="scrollArea">
+    <div class="section-label">Espaço reservado para a IA</div>
+    <div class="card-insight" id="insight1">Carregando diagnóstico...</div>
+    <div class="card-insight muted" id="insight2">Carregando indicadores...</div>
+
+    <div class="section-label">Sugestões</div>
+    <div class="suggestions-list">
+      <button class="suggestion-btn" onclick="usarSugestao(this)">Resumir o mês</button>
+      <button class="suggestion-btn" onclick="usarSugestao(this)">Onde perco margem?</button>
+      <button class="suggestion-btn" onclick="usarSugestao(this)">Quais clientes crescem?</button>
+    </div>
+  </div>
+
+  <div class="input-box">
+    <textarea id="pergunta" placeholder="Pergunte sobre os dados" onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); enviar(); }"></textarea>
+    <button class="send-btn" id="btnEnviar" onclick="enviar()" title="Enviar">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    let baseDados = null;
+    let historicoChat = []; // Mantém a memória da conversa no próprio navegador
+
+    // Carrega o dados_ia.json gerado pelo Python
+    async function carregarBase() {
+      try {
+        const resp = await fetch('./dados_ia.json?v=' + Date.now());
+        baseDados = await resp.json();
+        document.getElementById('insight1').textContent = baseDados.insights_iniciais.insight1;
+        document.getElementById('insight2').textContent = baseDados.insights_iniciais.insight2;
+      } catch (e) {
+        document.getElementById('insight1').textContent = 'Erro ao carregar dados_ia.json.';
+      }
+    }
+    carregarBase();
+
+    // Gestão da API Key no navegador (sem vazar no repositório público)
+    const keyInput = document.getElementById('apiKeyInput');
+    keyInput.value = localStorage.getItem('gemini_bi_key') || '';
+    if (!keyInput.value) {
+      document.getElementById('configBar').classList.add('open');
+    }
+
+    function toggleConfig() {
+      document.getElementById('configBar').classList.toggle('open');
+    }
+
+    function salvarChave() {
+      const val = keyInput.value.trim();
+      if (!val) return;
+      localStorage.setItem('gemini_bi_key', val);
+      document.getElementById('configBar').classList.remove('open');
+    }
+
+    function novaConversa() {
+      historicoChat = [];
+      document.getElementById('scrollArea').querySelectorAll('.dinamico').forEach(el => el.remove());
+    }
+
+    function usarSugestao(btn) {
+      document.getElementById('pergunta').value = btn.textContent.trim();
+      enviar();
+    }
+
+    function formatarTexto(texto) {
+      return texto.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffffff;">$1</strong>');
+    }
+
+    function montarContextoCompacto(pergunta) {
+      if (!baseDados) return '';
+      // Filtra Top 25 clientes + qualquer cliente mencionado na pergunta
+      const qLower = pergunta.toLowerCase();
+      const top25 = baseDados.clientes.slice(0, 25);
+      const extras = baseDados.clientes.filter(c => qLower.includes(c.CLIENTE.toLowerCase()));
+      const clientesContexto = [...top25];
+      extras.forEach(ex => {
+        if (!clientesContexto.some(c => c.CLIENTE === ex.CLIENTE)) clientesContexto.push(ex);
+      });
+
+      return JSON.stringify({
+        geral: baseDados.geral,
+        por_ano: baseDados.por_ano,
+        por_categoria: baseDados.por_categoria,
+        por_produto: baseDados.por_produto,
+        por_regiao: baseDados.por_regiao,
+        por_mes: baseDados.por_mes,
+        cat_mes_recente: baseDados.cat_mes_recente,
+        clientes_relevantes: clientesContexto
+      });
+    }
+
+    async function chamarGeminiDireto(pergunta, apiKey) {
+      const modelos = ['gemini-3.8-flash', 'gemini-3.1-flash-lite', 'gemini-2.5-pro'];
+      const contextoJson = montarContextoCompacto(pergunta);
+
+      const instrucaoSistema = `Você é o Assistente de Análise de BI integrado ao dashboard de vendas.
+Responda EXCLUSIVAMENTE com base nos dados JSON fornecidos (que representam a soma exata das 10.000 linhas).
+Diretrizes:
+1. Seja objetivo, executivo e direto ao ponto.
+2. Use bullet points curtos e destaque em **negrito** nomes de produtos/categorias e valores principais (em R$ e %).
+3. Compare margens com a média geral da empresa (${baseDados?.geral?.margem_pct || 32.34}%).
+4. Se o usuário pedir "Resumir o mês" sem especificar qual, use o último mês disponível na série e compare com o anterior.`;
+
+      if (historicoChat.length === 0) {
+        historicoChat.push({
+          role: 'user',
+          parts: [{ text: `BASE DE DADOS CONSOLIDADA:\n${contextoJson}\n\nPERGUNTA: ${pergunta}` }]
+        });
+      } else {
+        historicoChat.push({
+          role: 'user',
+          parts: [{ text: pergunta }]
+        });
+      }
+
+      for (const modelo of modelos) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
+        const resp = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: instrucaoSistema }] },
+            contents: historicoChat,
+            generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
+          })
+        });
+
+        const data = await resp.json();
+
+        if (resp.status === 503 || resp.status === 429) {
+          continue; // Pula automaticamente para o próximo modelo se der pico de demanda
+        }
+
+        if (!resp.ok || data.error) {
+          historicoChat.pop();
+          throw new Error(data.error?.message || 'Erro na API do Gemini');
+        }
+
+        const texto = data.candidates?.[0]?.content?.parts?.map(p => p.text).join('') || '';
+        if (!texto) {
+          historicoChat.pop();
+          throw new Error('Resposta vazia do modelo.');
+        }
+
+        historicoChat.push({ role: 'model', parts: [{ text: texto }] });
+        return texto;
+      }
+
+      historicoChat.pop();
+      throw new Error('Modelos temporariamente sobrecarregados. Tente novamente em instantes.');
+    }
+
+    async function enviar() {
+      const input = document.getElementById('pergunta');
+      const btn = document.getElementById('btnEnviar');
+      const scrollArea = document.getElementById('scrollArea');
+      const texto = input.value.trim();
+      const apiKey = localStorage.getItem('gemini_bi_key') || '';
+
+      if (!apiKey) {
+        document.getElementById('configBar').classList.add('open');
+        keyInput.focus();
+        return;
+      }
+      if (!texto) return;
+
+      const userDiv = document.createElement('div');
+      userDiv.className = 'card-user dinamico';
+      userDiv.textContent = texto;
+      scrollArea.appendChild(userDiv);
+
+      input.value = '';
+      input.disabled = true;
+      btn.disabled = true;
+      document.querySelectorAll('.suggestion-btn').forEach(b => b.disabled = true);
+
+      const botDiv = document.createElement('div');
+      botDiv.className = 'card-insight muted dinamico';
+      botDiv.textContent = 'Analisando dados...';
+      scrollArea.appendChild(botDiv);
+      scrollArea.scrollTop = scrollArea.scrollHeight;
+
+      try {
+        const resposta = await chamarGeminiDireto(texto, apiKey);
+        botDiv.className = 'card-insight dinamico';
+        botDiv.innerHTML = formatarTexto(resposta);
+      } catch (err) {
+        botDiv.textContent = 'Erro: ' + err.message;
+      } finally {
+        input.disabled = false;
+        btn.disabled = false;
+        document.querySelectorAll('.suggestion-btn').forEach(b => b.disabled = false);
+        scrollArea.scrollTop = scrollArea.scrollHeight;
+        input.focus();
+      }
+    }
+  </script>
 </body>
 </html>
