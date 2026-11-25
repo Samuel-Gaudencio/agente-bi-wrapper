@@ -1,0 +1,2571 @@
+{
+  "atualizado_em": "25/11/2026 18:43",
+  "insights_iniciais": {
+    "insight1": "Creatina 150g é o 13º em faturamento (R$ 20.308.410,00), mas opera com margem de -688.3% (abaixo da média de -21.2%).",
+    "insight2": "Suplementos representa 77.5% da receita (R$ 1.357.859.235,00) com margem média de -32.1%."
+  },
+  "geral": {
+    "pedidos": 10000,
+    "qtd": 55060,
+    "venda": 1752363883.0,
+    "custo": 2123489785.0,
+    "lucro": -371125902.0,
+    "margem_pct": -21.18,
+    "clientes_unicos": 192
+  },
+  "por_ano": [
+    {
+      "ANO": "2024",
+      "pedidos": 3436,
+      "qtd": 18991,
+      "venda": 607079723,
+      "custo": 745970244,
+      "lucro": -138890521,
+      "margem_pct": -22.88
+    },
+    {
+      "ANO": "2025",
+      "pedidos": 3282,
+      "qtd": 17965,
+      "venda": 569860169,
+      "custo": 686636656,
+      "lucro": -116776487,
+      "margem_pct": -20.49
+    },
+    {
+      "ANO": "2026",
+      "pedidos": 3282,
+      "qtd": 18104,
+      "venda": 575423991,
+      "custo": 690882885,
+      "lucro": -115458894,
+      "margem_pct": -20.07
+    }
+  ],
+  "por_mes": [
+    {
+      "ANO_MES": "2024-01",
+      "pedidos": 306,
+      "qtd": 1798,
+      "venda": 50111197,
+      "custo": 67678536,
+      "lucro": -17567339,
+      "margem_pct": -35.06
+    },
+    {
+      "ANO_MES": "2024-02",
+      "pedidos": 290,
+      "qtd": 1606,
+      "venda": 45876215,
+      "custo": 61165472,
+      "lucro": -15289257,
+      "margem_pct": -33.33
+    },
+    {
+      "ANO_MES": "2024-03",
+      "pedidos": 310,
+      "qtd": 1765,
+      "venda": 52660196,
+      "custo": 67466841,
+      "lucro": -14806645,
+      "margem_pct": -28.12
+    },
+    {
+      "ANO_MES": "2024-04",
+      "pedidos": 300,
+      "qtd": 1671,
+      "venda": 57262642,
+      "custo": 66921406,
+      "lucro": -9658764,
+      "margem_pct": -16.87
+    },
+    {
+      "ANO_MES": "2024-05",
+      "pedidos": 310,
+      "qtd": 1727,
+      "venda": 57436659,
+      "custo": 71027595,
+      "lucro": -13590936,
+      "margem_pct": -23.66
+    },
+    {
+      "ANO_MES": "2024-06",
+      "pedidos": 271,
+      "qtd": 1494,
+      "venda": 50710332,
+      "custo": 63939789,
+      "lucro": -13229457,
+      "margem_pct": -26.09
+    },
+    {
+      "ANO_MES": "2024-07",
+      "pedidos": 277,
+      "qtd": 1426,
+      "venda": 52362076,
+      "custo": 63677389,
+      "lucro": -11315313,
+      "margem_pct": -21.61
+    },
+    {
+      "ANO_MES": "2024-08",
+      "pedidos": 278,
+      "qtd": 1500,
+      "venda": 52543372,
+      "custo": 57732395,
+      "lucro": -5189023,
+      "margem_pct": -9.88
+    },
+    {
+      "ANO_MES": "2024-09",
+      "pedidos": 268,
+      "qtd": 1460,
+      "venda": 39588807,
+      "custo": 53561818,
+      "lucro": -13973011,
+      "margem_pct": -35.3
+    },
+    {
+      "ANO_MES": "2024-10",
+      "pedidos": 278,
+      "qtd": 1546,
+      "venda": 55841293,
+      "custo": 64713200,
+      "lucro": -8871907,
+      "margem_pct": -15.89
+    },
+    {
+      "ANO_MES": "2024-11",
+      "pedidos": 270,
+      "qtd": 1460,
+      "venda": 43247354,
+      "custo": 53771697,
+      "lucro": -10524343,
+      "margem_pct": -24.34
+    },
+    {
+      "ANO_MES": "2024-12",
+      "pedidos": 278,
+      "qtd": 1538,
+      "venda": 49439580,
+      "custo": 54314106,
+      "lucro": -4874526,
+      "margem_pct": -9.86
+    },
+    {
+      "ANO_MES": "2025-01",
+      "pedidos": 279,
+      "qtd": 1504,
+      "venda": 49779024,
+      "custo": 60363187,
+      "lucro": -10584163,
+      "margem_pct": -21.26
+    },
+    {
+      "ANO_MES": "2025-02",
+      "pedidos": 252,
+      "qtd": 1323,
+      "venda": 42575509,
+      "custo": 47676148,
+      "lucro": -5100639,
+      "margem_pct": -11.98
+    },
+    {
+      "ANO_MES": "2025-03",
+      "pedidos": 279,
+      "qtd": 1531,
+      "venda": 45185003,
+      "custo": 61943269,
+      "lucro": -16758266,
+      "margem_pct": -37.09
+    },
+    {
+      "ANO_MES": "2025-04",
+      "pedidos": 270,
+      "qtd": 1494,
+      "venda": 45846588,
+      "custo": 55950557,
+      "lucro": -10103969,
+      "margem_pct": -22.04
+    },
+    {
+      "ANO_MES": "2025-05",
+      "pedidos": 279,
+      "qtd": 1627,
+      "venda": 47621692,
+      "custo": 63196902,
+      "lucro": -15575210,
+      "margem_pct": -32.71
+    },
+    {
+      "ANO_MES": "2025-06",
+      "pedidos": 268,
+      "qtd": 1487,
+      "venda": 47536615,
+      "custo": 50115931,
+      "lucro": -2579316,
+      "margem_pct": -5.43
+    },
+    {
+      "ANO_MES": "2025-07",
+      "pedidos": 279,
+      "qtd": 1486,
+      "venda": 53249681,
+      "custo": 61416112,
+      "lucro": -8166431,
+      "margem_pct": -15.34
+    },
+    {
+      "ANO_MES": "2025-08",
+      "pedidos": 278,
+      "qtd": 1505,
+      "venda": 42178508,
+      "custo": 51946385,
+      "lucro": -9767877,
+      "margem_pct": -23.16
+    },
+    {
+      "ANO_MES": "2025-09",
+      "pedidos": 270,
+      "qtd": 1443,
+      "venda": 42135889,
+      "custo": 52500637,
+      "lucro": -10364748,
+      "margem_pct": -24.6
+    },
+    {
+      "ANO_MES": "2025-10",
+      "pedidos": 279,
+      "qtd": 1550,
+      "venda": 53740869,
+      "custo": 62367394,
+      "lucro": -8626525,
+      "margem_pct": -16.05
+    },
+    {
+      "ANO_MES": "2025-11",
+      "pedidos": 270,
+      "qtd": 1478,
+      "venda": 51924067,
+      "custo": 62855122,
+      "lucro": -10931055,
+      "margem_pct": -21.05
+    },
+    {
+      "ANO_MES": "2025-12",
+      "pedidos": 279,
+      "qtd": 1537,
+      "venda": 48086724,
+      "custo": 56305012,
+      "lucro": -8218288,
+      "margem_pct": -17.09
+    },
+    {
+      "ANO_MES": "2026-01",
+      "pedidos": 279,
+      "qtd": 1455,
+      "venda": 47178189,
+      "custo": 53344800,
+      "lucro": -6166611,
+      "margem_pct": -13.07
+    },
+    {
+      "ANO_MES": "2026-02",
+      "pedidos": 252,
+      "qtd": 1412,
+      "venda": 39495121,
+      "custo": 53767626,
+      "lucro": -14272505,
+      "margem_pct": -36.14
+    },
+    {
+      "ANO_MES": "2026-03",
+      "pedidos": 279,
+      "qtd": 1546,
+      "venda": 52614366,
+      "custo": 63618885,
+      "lucro": -11004519,
+      "margem_pct": -20.92
+    },
+    {
+      "ANO_MES": "2026-04",
+      "pedidos": 270,
+      "qtd": 1549,
+      "venda": 46502384,
+      "custo": 59508490,
+      "lucro": -13006106,
+      "margem_pct": -27.97
+    },
+    {
+      "ANO_MES": "2026-05",
+      "pedidos": 278,
+      "qtd": 1535,
+      "venda": 50025626,
+      "custo": 55144453,
+      "lucro": -5118827,
+      "margem_pct": -10.23
+    },
+    {
+      "ANO_MES": "2026-06",
+      "pedidos": 270,
+      "qtd": 1490,
+      "venda": 53667468,
+      "custo": 62484517,
+      "lucro": -8817049,
+      "margem_pct": -16.43
+    },
+    {
+      "ANO_MES": "2026-07",
+      "pedidos": 279,
+      "qtd": 1614,
+      "venda": 50167972,
+      "custo": 58125830,
+      "lucro": -7957858,
+      "margem_pct": -15.86
+    },
+    {
+      "ANO_MES": "2026-08",
+      "pedidos": 279,
+      "qtd": 1468,
+      "venda": 44763649,
+      "custo": 57382119,
+      "lucro": -12618470,
+      "margem_pct": -28.19
+    },
+    {
+      "ANO_MES": "2026-09",
+      "pedidos": 269,
+      "qtd": 1431,
+      "venda": 46297672,
+      "custo": 53762375,
+      "lucro": -7464703,
+      "margem_pct": -16.12
+    },
+    {
+      "ANO_MES": "2026-10",
+      "pedidos": 279,
+      "qtd": 1590,
+      "venda": 46132865,
+      "custo": 61218784,
+      "lucro": -15085919,
+      "margem_pct": -32.7
+    },
+    {
+      "ANO_MES": "2026-11",
+      "pedidos": 269,
+      "qtd": 1543,
+      "venda": 54133790,
+      "custo": 59215202,
+      "lucro": -5081412,
+      "margem_pct": -9.39
+    },
+    {
+      "ANO_MES": "2026-12",
+      "pedidos": 279,
+      "qtd": 1471,
+      "venda": 44444889,
+      "custo": 53309804,
+      "lucro": -8864915,
+      "margem_pct": -19.95
+    }
+  ],
+  "por_categoria": [
+    {
+      "CATEGORIA": "Suplementos",
+      "pedidos": 6182,
+      "qtd": 34157,
+      "venda": 1357859235,
+      "custo": 1794462095,
+      "lucro": -436602860,
+      "margem_pct": -32.15
+    },
+    {
+      "CATEGORIA": "Outros",
+      "pedidos": 1657,
+      "qtd": 8941,
+      "venda": 251626118,
+      "custo": 105557460,
+      "lucro": 146068658,
+      "margem_pct": 58.05
+    },
+    {
+      "CATEGORIA": "Óleos",
+      "pedidos": 916,
+      "qtd": 5077,
+      "venda": 72001060,
+      "custo": 38860650,
+      "lucro": 33140410,
+      "margem_pct": 46.03
+    },
+    {
+      "CATEGORIA": "Grãos",
+      "pedidos": 1245,
+      "qtd": 6885,
+      "venda": 70877470,
+      "custo": 184609580,
+      "lucro": -113732110,
+      "margem_pct": -160.46
+    }
+  ],
+  "por_produto": [
+    {
+      "PRODUTO": "Creatina 120 caps",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 1840,
+      "qtd": 10298,
+      "venda": 455537026,
+      "custo": 485673719,
+      "lucro": -30136693,
+      "margem_pct": -6.62
+    },
+    {
+      "PRODUTO": "Ômega 3 60 caps",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 847,
+      "qtd": 4570,
+      "venda": 245677328,
+      "custo": 269349538,
+      "lucro": -23672210,
+      "margem_pct": -9.64
+    },
+    {
+      "PRODUTO": "Ômega 3 120 caps",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 826,
+      "qtd": 4600,
+      "venda": 202710994,
+      "custo": 225148000,
+      "lucro": -22437006,
+      "margem_pct": -11.07
+    },
+    {
+      "PRODUTO": "Coenzima Q10",
+      "CATEGORIA": "Outros",
+      "pedidos": 366,
+      "qtd": 1981,
+      "venda": 169159428,
+      "custo": 66342020,
+      "lucro": 102817408,
+      "margem_pct": 60.78
+    },
+    {
+      "PRODUTO": "Creatina 300g",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 955,
+      "qtd": 5259,
+      "venda": 165063341,
+      "custo": 286748000,
+      "lucro": -121684659,
+      "margem_pct": -73.72
+    },
+    {
+      "PRODUTO": "Pré-treino 300g",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 401,
+      "qtd": 2276,
+      "venda": 152099344,
+      "custo": 106168460,
+      "lucro": 45930884,
+      "margem_pct": 30.2
+    },
+    {
+      "PRODUTO": "Ômega 3 180 caps",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 363,
+      "qtd": 1950,
+      "venda": 98487242,
+      "custo": 135014988,
+      "lucro": -36527746,
+      "margem_pct": -37.09
+    },
+    {
+      "PRODUTO": "Azeite 500ml",
+      "CATEGORIA": "Óleos",
+      "pedidos": 916,
+      "qtd": 5077,
+      "venda": 72001060,
+      "custo": 38860650,
+      "lucro": 33140410,
+      "margem_pct": 46.03
+    },
+    {
+      "PRODUTO": "Café 250g",
+      "CATEGORIA": "Grãos",
+      "pedidos": 867,
+      "qtd": 4838,
+      "venda": 58379400,
+      "custo": 89012110,
+      "lucro": -30632710,
+      "margem_pct": -52.47
+    },
+    {
+      "PRODUTO": "Leite Pó 380g",
+      "CATEGORIA": "Outros",
+      "pedidos": 372,
+      "qtd": 2078,
+      "venda": 34177330,
+      "custo": 19758450,
+      "lucro": 14418880,
+      "margem_pct": 42.19
+    },
+    {
+      "PRODUTO": "Pasta Amendoim 500g",
+      "CATEGORIA": "Outros",
+      "pedidos": 407,
+      "qtd": 2162,
+      "venda": 27284670,
+      "custo": 10864750,
+      "lucro": 16419920,
+      "margem_pct": 60.18
+    },
+    {
+      "PRODUTO": "Chocolate 250ml",
+      "CATEGORIA": "Outros",
+      "pedidos": 512,
+      "qtd": 2720,
+      "venda": 21004690,
+      "custo": 8592240,
+      "lucro": 12412450,
+      "margem_pct": 59.09
+    },
+    {
+      "PRODUTO": "Creatina 150g",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 491,
+      "qtd": 2763,
+      "venda": 20308410,
+      "custo": 160085140,
+      "lucro": -139776730,
+      "margem_pct": -688.27
+    },
+    {
+      "PRODUTO": "Pré-treino 150g",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 459,
+      "qtd": 2441,
+      "venda": 17975550,
+      "custo": 126274250,
+      "lucro": -108298700,
+      "margem_pct": -602.48
+    },
+    {
+      "PRODUTO": "Café 1Kg",
+      "CATEGORIA": "Grãos",
+      "pedidos": 378,
+      "qtd": 2047,
+      "venda": 12498070,
+      "custo": 95597470,
+      "lucro": -83099400,
+      "margem_pct": -664.9
+    }
+  ],
+  "por_regiao": [
+    {
+      "REGIÃO": "ES",
+      "pedidos": 2500,
+      "qtd": 13718,
+      "venda": 446453879,
+      "custo": 549147515,
+      "lucro": -102693636,
+      "margem_pct": -23.0
+    },
+    {
+      "REGIÃO": "SP",
+      "pedidos": 2500,
+      "qtd": 13598,
+      "venda": 445529693,
+      "custo": 517394212,
+      "lucro": -71864519,
+      "margem_pct": -16.13
+    },
+    {
+      "REGIÃO": "MG",
+      "pedidos": 2500,
+      "qtd": 13855,
+      "venda": 439845333,
+      "custo": 530760165,
+      "lucro": -90914832,
+      "margem_pct": -20.67
+    },
+    {
+      "REGIÃO": "RJ",
+      "pedidos": 2500,
+      "qtd": 13889,
+      "venda": 420534978,
+      "custo": 526187893,
+      "lucro": -105652915,
+      "margem_pct": -25.12
+    }
+  ],
+  "cat_mes_recente": [
+    {
+      "ANO_MES": "2026-07",
+      "CATEGORIA": "Grãos",
+      "pedidos": 41,
+      "qtd": 225,
+      "venda": 2296120,
+      "custo": 5821000,
+      "lucro": -3524880,
+      "margem_pct": -153.51
+    },
+    {
+      "ANO_MES": "2026-07",
+      "CATEGORIA": "Outros",
+      "pedidos": 39,
+      "qtd": 218,
+      "venda": 6732180,
+      "custo": 2613630,
+      "lucro": 4118550,
+      "margem_pct": 61.18
+    },
+    {
+      "ANO_MES": "2026-07",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 169,
+      "qtd": 976,
+      "venda": 38508872,
+      "custo": 48067420,
+      "lucro": -9558548,
+      "margem_pct": -24.82
+    },
+    {
+      "ANO_MES": "2026-07",
+      "CATEGORIA": "Óleos",
+      "pedidos": 30,
+      "qtd": 195,
+      "venda": 2630800,
+      "custo": 1623780,
+      "lucro": 1007020,
+      "margem_pct": 38.28
+    },
+    {
+      "ANO_MES": "2026-08",
+      "CATEGORIA": "Grãos",
+      "pedidos": 39,
+      "qtd": 206,
+      "venda": 2003220,
+      "custo": 5028410,
+      "lucro": -3025190,
+      "margem_pct": -151.02
+    },
+    {
+      "ANO_MES": "2026-08",
+      "CATEGORIA": "Outros",
+      "pedidos": 49,
+      "qtd": 264,
+      "venda": 6725091,
+      "custo": 3427960,
+      "lucro": 3297131,
+      "margem_pct": 49.03
+    },
+    {
+      "ANO_MES": "2026-08",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 162,
+      "qtd": 841,
+      "venda": 33249828,
+      "custo": 47873389,
+      "lucro": -14623561,
+      "margem_pct": -43.98
+    },
+    {
+      "ANO_MES": "2026-08",
+      "CATEGORIA": "Óleos",
+      "pedidos": 29,
+      "qtd": 157,
+      "venda": 2785510,
+      "custo": 1052360,
+      "lucro": 1733150,
+      "margem_pct": 62.22
+    },
+    {
+      "ANO_MES": "2026-09",
+      "CATEGORIA": "Grãos",
+      "pedidos": 33,
+      "qtd": 160,
+      "venda": 1629770,
+      "custo": 4320440,
+      "lucro": -2690670,
+      "margem_pct": -165.1
+    },
+    {
+      "ANO_MES": "2026-09",
+      "CATEGORIA": "Outros",
+      "pedidos": 42,
+      "qtd": 229,
+      "venda": 8201330,
+      "custo": 3798630,
+      "lucro": 4402700,
+      "margem_pct": 53.68
+    },
+    {
+      "ANO_MES": "2026-09",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 164,
+      "qtd": 877,
+      "venda": 33996842,
+      "custo": 44627065,
+      "lucro": -10630223,
+      "margem_pct": -31.27
+    },
+    {
+      "ANO_MES": "2026-09",
+      "CATEGORIA": "Óleos",
+      "pedidos": 30,
+      "qtd": 165,
+      "venda": 2469730,
+      "custo": 1016240,
+      "lucro": 1453490,
+      "margem_pct": 58.85
+    },
+    {
+      "ANO_MES": "2026-10",
+      "CATEGORIA": "Grãos",
+      "pedidos": 38,
+      "qtd": 204,
+      "venda": 1816170,
+      "custo": 5554920,
+      "lucro": -3738750,
+      "margem_pct": -205.86
+    },
+    {
+      "ANO_MES": "2026-10",
+      "CATEGORIA": "Outros",
+      "pedidos": 43,
+      "qtd": 251,
+      "venda": 6491507,
+      "custo": 2674050,
+      "lucro": 3817457,
+      "margem_pct": 58.81
+    },
+    {
+      "ANO_MES": "2026-10",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 167,
+      "qtd": 967,
+      "venda": 35975568,
+      "custo": 52077604,
+      "lucro": -16102036,
+      "margem_pct": -44.76
+    },
+    {
+      "ANO_MES": "2026-10",
+      "CATEGORIA": "Óleos",
+      "pedidos": 31,
+      "qtd": 168,
+      "venda": 1849620,
+      "custo": 912210,
+      "lucro": 937410,
+      "margem_pct": 50.68
+    },
+    {
+      "ANO_MES": "2026-11",
+      "CATEGORIA": "Grãos",
+      "pedidos": 29,
+      "qtd": 184,
+      "venda": 1914680,
+      "custo": 4599480,
+      "lucro": -2684800,
+      "margem_pct": -140.22
+    },
+    {
+      "ANO_MES": "2026-11",
+      "CATEGORIA": "Outros",
+      "pedidos": 42,
+      "qtd": 229,
+      "venda": 5837580,
+      "custo": 1809520,
+      "lucro": 4028060,
+      "margem_pct": 69.0
+    },
+    {
+      "ANO_MES": "2026-11",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 181,
+      "qtd": 1023,
+      "venda": 45206210,
+      "custo": 52348732,
+      "lucro": -7142522,
+      "margem_pct": -15.8
+    },
+    {
+      "ANO_MES": "2026-11",
+      "CATEGORIA": "Óleos",
+      "pedidos": 17,
+      "qtd": 107,
+      "venda": 1175320,
+      "custo": 457470,
+      "lucro": 717850,
+      "margem_pct": 61.08
+    },
+    {
+      "ANO_MES": "2026-12",
+      "CATEGORIA": "Grãos",
+      "pedidos": 30,
+      "qtd": 169,
+      "venda": 1346430,
+      "custo": 3956000,
+      "lucro": -2609570,
+      "margem_pct": -193.81
+    },
+    {
+      "ANO_MES": "2026-12",
+      "CATEGORIA": "Outros",
+      "pedidos": 44,
+      "qtd": 230,
+      "venda": 7276860,
+      "custo": 2466490,
+      "lucro": 4810370,
+      "margem_pct": 66.11
+    },
+    {
+      "ANO_MES": "2026-12",
+      "CATEGORIA": "Suplementos",
+      "pedidos": 170,
+      "qtd": 880,
+      "venda": 33274769,
+      "custo": 45439864,
+      "lucro": -12165095,
+      "margem_pct": -36.56
+    },
+    {
+      "ANO_MES": "2026-12",
+      "CATEGORIA": "Óleos",
+      "pedidos": 35,
+      "qtd": 192,
+      "venda": 2546830,
+      "custo": 1447450,
+      "lucro": 1099380,
+      "margem_pct": 43.17
+    }
+  ],
+  "clientes": [
+    {
+      "CLIENTE": "Camille",
+      "pedidos": 66,
+      "qtd": 343,
+      "venda": 18076222,
+      "custo": 16750369,
+      "lucro": 1325853,
+      "margem_pct": 7.33
+    },
+    {
+      "CLIENTE": "Valentina",
+      "pedidos": 66,
+      "qtd": 386,
+      "venda": 17810910,
+      "custo": 18161332,
+      "lucro": -350422,
+      "margem_pct": -1.97
+    },
+    {
+      "CLIENTE": "Akemi",
+      "pedidos": 51,
+      "qtd": 304,
+      "venda": 14944751,
+      "custo": 14206488,
+      "lucro": 738263,
+      "margem_pct": 4.94
+    },
+    {
+      "CLIENTE": "Alcione",
+      "pedidos": 54,
+      "qtd": 307,
+      "venda": 14818991,
+      "custo": 15104829,
+      "lucro": -285838,
+      "margem_pct": -1.93
+    },
+    {
+      "CLIENTE": "Lívia",
+      "pedidos": 73,
+      "qtd": 438,
+      "venda": 14454442,
+      "custo": 15498177,
+      "lucro": -1043735,
+      "margem_pct": -7.22
+    },
+    {
+      "CLIENTE": "Maya",
+      "pedidos": 63,
+      "qtd": 369,
+      "venda": 14075659,
+      "custo": 15169127,
+      "lucro": -1093468,
+      "margem_pct": -7.77
+    },
+    {
+      "CLIENTE": "Zulmira",
+      "pedidos": 51,
+      "qtd": 289,
+      "venda": 13637607,
+      "custo": 12945578,
+      "lucro": 692029,
+      "margem_pct": 5.07
+    },
+    {
+      "CLIENTE": "Graziela",
+      "pedidos": 59,
+      "qtd": 327,
+      "venda": 13144239,
+      "custo": 14657763,
+      "lucro": -1513524,
+      "margem_pct": -11.51
+    },
+    {
+      "CLIENTE": "Alexandrina",
+      "pedidos": 57,
+      "qtd": 275,
+      "venda": 13061400,
+      "custo": 12244116,
+      "lucro": 817284,
+      "margem_pct": 6.26
+    },
+    {
+      "CLIENTE": "Désirée",
+      "pedidos": 59,
+      "qtd": 341,
+      "venda": 12908956,
+      "custo": 16269101,
+      "lucro": -3360145,
+      "margem_pct": -26.03
+    },
+    {
+      "CLIENTE": "Adelaide",
+      "pedidos": 69,
+      "qtd": 397,
+      "venda": 12827721,
+      "custo": 17581848,
+      "lucro": -4754127,
+      "margem_pct": -37.06
+    },
+    {
+      "CLIENTE": "Bianca",
+      "pedidos": 63,
+      "qtd": 364,
+      "venda": 12655156,
+      "custo": 12951554,
+      "lucro": -296398,
+      "margem_pct": -2.34
+    },
+    {
+      "CLIENTE": "Davi",
+      "pedidos": 60,
+      "qtd": 278,
+      "venda": 12638223,
+      "custo": 11321819,
+      "lucro": 1316404,
+      "margem_pct": 10.42
+    },
+    {
+      "CLIENTE": "Adriana",
+      "pedidos": 48,
+      "qtd": 253,
+      "venda": 12629002,
+      "custo": 13744039,
+      "lucro": -1115037,
+      "margem_pct": -8.83
+    },
+    {
+      "CLIENTE": "Yeda",
+      "pedidos": 58,
+      "qtd": 309,
+      "venda": 12544900,
+      "custo": 9973145,
+      "lucro": 2571755,
+      "margem_pct": 20.5
+    },
+    {
+      "CLIENTE": "Ângela",
+      "pedidos": 60,
+      "qtd": 313,
+      "venda": 12489710,
+      "custo": 13853959,
+      "lucro": -1364249,
+      "margem_pct": -10.92
+    },
+    {
+      "CLIENTE": "Verônica",
+      "pedidos": 46,
+      "qtd": 228,
+      "venda": 12412581,
+      "custo": 11437037,
+      "lucro": 975544,
+      "margem_pct": 7.86
+    },
+    {
+      "CLIENTE": "Jéssica",
+      "pedidos": 63,
+      "qtd": 325,
+      "venda": 12359746,
+      "custo": 12404624,
+      "lucro": -44878,
+      "margem_pct": -0.36
+    },
+    {
+      "CLIENTE": "Verena",
+      "pedidos": 67,
+      "qtd": 357,
+      "venda": 12338202,
+      "custo": 11452077,
+      "lucro": 886125,
+      "margem_pct": 7.18
+    },
+    {
+      "CLIENTE": "Adalina",
+      "pedidos": 53,
+      "qtd": 310,
+      "venda": 12301131,
+      "custo": 9798933,
+      "lucro": 2502198,
+      "margem_pct": 20.34
+    },
+    {
+      "CLIENTE": "Claire",
+      "pedidos": 58,
+      "qtd": 297,
+      "venda": 12154222,
+      "custo": 12373386,
+      "lucro": -219164,
+      "margem_pct": -1.8
+    },
+    {
+      "CLIENTE": "Célia",
+      "pedidos": 59,
+      "qtd": 348,
+      "venda": 12144132,
+      "custo": 12273800,
+      "lucro": -129668,
+      "margem_pct": -1.07
+    },
+    {
+      "CLIENTE": "Lucca",
+      "pedidos": 49,
+      "qtd": 224,
+      "venda": 11934684,
+      "custo": 9755984,
+      "lucro": 2178700,
+      "margem_pct": 18.26
+    },
+    {
+      "CLIENTE": "Heidi",
+      "pedidos": 56,
+      "qtd": 322,
+      "venda": 11917747,
+      "custo": 12666819,
+      "lucro": -749072,
+      "margem_pct": -6.29
+    },
+    {
+      "CLIENTE": "Sara",
+      "pedidos": 63,
+      "qtd": 369,
+      "venda": 11841573,
+      "custo": 13645173,
+      "lucro": -1803600,
+      "margem_pct": -15.23
+    },
+    {
+      "CLIENTE": "Aline",
+      "pedidos": 68,
+      "qtd": 402,
+      "venda": 11658288,
+      "custo": 15388967,
+      "lucro": -3730679,
+      "margem_pct": -32.0
+    },
+    {
+      "CLIENTE": "Miranda",
+      "pedidos": 51,
+      "qtd": 303,
+      "venda": 11657610,
+      "custo": 12596795,
+      "lucro": -939185,
+      "margem_pct": -8.06
+    },
+    {
+      "CLIENTE": "Juliana",
+      "pedidos": 72,
+      "qtd": 389,
+      "venda": 11582062,
+      "custo": 16109983,
+      "lucro": -4527921,
+      "margem_pct": -39.09
+    },
+    {
+      "CLIENTE": "Elisabete",
+      "pedidos": 67,
+      "qtd": 357,
+      "venda": 11534705,
+      "custo": 12008459,
+      "lucro": -473754,
+      "margem_pct": -4.11
+    },
+    {
+      "CLIENTE": "Jane",
+      "pedidos": 65,
+      "qtd": 340,
+      "venda": 11489911,
+      "custo": 15904694,
+      "lucro": -4414783,
+      "margem_pct": -38.42
+    },
+    {
+      "CLIENTE": "Rafael",
+      "pedidos": 51,
+      "qtd": 316,
+      "venda": 11379238,
+      "custo": 15134446,
+      "lucro": -3755208,
+      "margem_pct": -33.0
+    },
+    {
+      "CLIENTE": "Jasmim",
+      "pedidos": 59,
+      "qtd": 309,
+      "venda": 11280512,
+      "custo": 13177142,
+      "lucro": -1896630,
+      "margem_pct": -16.81
+    },
+    {
+      "CLIENTE": "Milena",
+      "pedidos": 50,
+      "qtd": 248,
+      "venda": 11276335,
+      "custo": 10589080,
+      "lucro": 687255,
+      "margem_pct": 6.09
+    },
+    {
+      "CLIENTE": "Angelina",
+      "pedidos": 51,
+      "qtd": 242,
+      "venda": 11273927,
+      "custo": 11093283,
+      "lucro": 180644,
+      "margem_pct": 1.6
+    },
+    {
+      "CLIENTE": "Poliana",
+      "pedidos": 60,
+      "qtd": 347,
+      "venda": 11251938,
+      "custo": 15881077,
+      "lucro": -4629139,
+      "margem_pct": -41.14
+    },
+    {
+      "CLIENTE": "Rubi",
+      "pedidos": 60,
+      "qtd": 327,
+      "venda": 11172019,
+      "custo": 12692181,
+      "lucro": -1520162,
+      "margem_pct": -13.61
+    },
+    {
+      "CLIENTE": "Márcia",
+      "pedidos": 56,
+      "qtd": 306,
+      "venda": 11168388,
+      "custo": 12054183,
+      "lucro": -885795,
+      "margem_pct": -7.93
+    },
+    {
+      "CLIENTE": "Eduardo",
+      "pedidos": 56,
+      "qtd": 303,
+      "venda": 11045435,
+      "custo": 10283168,
+      "lucro": 762267,
+      "margem_pct": 6.9
+    },
+    {
+      "CLIENTE": "Telma",
+      "pedidos": 50,
+      "qtd": 294,
+      "venda": 10853638,
+      "custo": 14178507,
+      "lucro": -3324869,
+      "margem_pct": -30.63
+    },
+    {
+      "CLIENTE": "Lara",
+      "pedidos": 59,
+      "qtd": 318,
+      "venda": 10759148,
+      "custo": 14026865,
+      "lucro": -3267717,
+      "margem_pct": -30.37
+    },
+    {
+      "CLIENTE": "Tarsila",
+      "pedidos": 62,
+      "qtd": 331,
+      "venda": 10743078,
+      "custo": 13563439,
+      "lucro": -2820361,
+      "margem_pct": -26.25
+    },
+    {
+      "CLIENTE": "Letícia",
+      "pedidos": 52,
+      "qtd": 290,
+      "venda": 10585290,
+      "custo": 12507827,
+      "lucro": -1922537,
+      "margem_pct": -18.16
+    },
+    {
+      "CLIENTE": "Aileen",
+      "pedidos": 59,
+      "qtd": 308,
+      "venda": 10523988,
+      "custo": 11165212,
+      "lucro": -641224,
+      "margem_pct": -6.09
+    },
+    {
+      "CLIENTE": "Isabelly",
+      "pedidos": 58,
+      "qtd": 309,
+      "venda": 10518377,
+      "custo": 14296940,
+      "lucro": -3778563,
+      "margem_pct": -35.92
+    },
+    {
+      "CLIENTE": "Karla",
+      "pedidos": 53,
+      "qtd": 295,
+      "venda": 10510336,
+      "custo": 11106023,
+      "lucro": -595687,
+      "margem_pct": -5.67
+    },
+    {
+      "CLIENTE": "Paula",
+      "pedidos": 48,
+      "qtd": 233,
+      "venda": 10423593,
+      "custo": 11461842,
+      "lucro": -1038249,
+      "margem_pct": -9.96
+    },
+    {
+      "CLIENTE": "Melissa",
+      "pedidos": 60,
+      "qtd": 349,
+      "venda": 10415614,
+      "custo": 13300037,
+      "lucro": -2884423,
+      "margem_pct": -27.69
+    },
+    {
+      "CLIENTE": "Abigail",
+      "pedidos": 52,
+      "qtd": 277,
+      "venda": 10324402,
+      "custo": 9423920,
+      "lucro": 900482,
+      "margem_pct": 8.72
+    },
+    {
+      "CLIENTE": "Elisa",
+      "pedidos": 64,
+      "qtd": 357,
+      "venda": 10318284,
+      "custo": 11627905,
+      "lucro": -1309621,
+      "margem_pct": -12.69
+    },
+    {
+      "CLIENTE": "Flávia",
+      "pedidos": 40,
+      "qtd": 206,
+      "venda": 10297787,
+      "custo": 9937993,
+      "lucro": 359794,
+      "margem_pct": 3.49
+    },
+    {
+      "CLIENTE": "Cláudia",
+      "pedidos": 44,
+      "qtd": 246,
+      "venda": 10291949,
+      "custo": 9834710,
+      "lucro": 457239,
+      "margem_pct": 4.44
+    },
+    {
+      "CLIENTE": "Susana",
+      "pedidos": 57,
+      "qtd": 321,
+      "venda": 10218985,
+      "custo": 12601578,
+      "lucro": -2382593,
+      "margem_pct": -23.32
+    },
+    {
+      "CLIENTE": "Marina",
+      "pedidos": 58,
+      "qtd": 327,
+      "venda": 10213278,
+      "custo": 10443100,
+      "lucro": -229822,
+      "margem_pct": -2.25
+    },
+    {
+      "CLIENTE": "Rafaela",
+      "pedidos": 49,
+      "qtd": 284,
+      "venda": 10195835,
+      "custo": 10808084,
+      "lucro": -612249,
+      "margem_pct": -6.0
+    },
+    {
+      "CLIENTE": "Betânia",
+      "pedidos": 47,
+      "qtd": 279,
+      "venda": 10151785,
+      "custo": 8286234,
+      "lucro": 1865551,
+      "margem_pct": 18.38
+    },
+    {
+      "CLIENTE": "Heloísa",
+      "pedidos": 46,
+      "qtd": 260,
+      "venda": 10127968,
+      "custo": 9969554,
+      "lucro": 158414,
+      "margem_pct": 1.56
+    },
+    {
+      "CLIENTE": "Isabela",
+      "pedidos": 48,
+      "qtd": 231,
+      "venda": 10121129,
+      "custo": 7708785,
+      "lucro": 2412344,
+      "margem_pct": 23.83
+    },
+    {
+      "CLIENTE": "Cíntia",
+      "pedidos": 49,
+      "qtd": 274,
+      "venda": 10120511,
+      "custo": 12020528,
+      "lucro": -1900017,
+      "margem_pct": -18.77
+    },
+    {
+      "CLIENTE": "Alexa",
+      "pedidos": 55,
+      "qtd": 273,
+      "venda": 10077608,
+      "custo": 13498347,
+      "lucro": -3420739,
+      "margem_pct": -33.94
+    },
+    {
+      "CLIENTE": "Daniela",
+      "pedidos": 62,
+      "qtd": 337,
+      "venda": 10045026,
+      "custo": 17246705,
+      "lucro": -7201679,
+      "margem_pct": -71.69
+    },
+    {
+      "CLIENTE": "Ynes",
+      "pedidos": 55,
+      "qtd": 279,
+      "venda": 10041096,
+      "custo": 10335625,
+      "lucro": -294529,
+      "margem_pct": -2.93
+    },
+    {
+      "CLIENTE": "Gabriel",
+      "pedidos": 53,
+      "qtd": 297,
+      "venda": 10033242,
+      "custo": 11591755,
+      "lucro": -1558513,
+      "margem_pct": -15.53
+    },
+    {
+      "CLIENTE": "Ivy",
+      "pedidos": 53,
+      "qtd": 321,
+      "venda": 9936011,
+      "custo": 12808648,
+      "lucro": -2872637,
+      "margem_pct": -28.91
+    },
+    {
+      "CLIENTE": "Velma",
+      "pedidos": 61,
+      "qtd": 323,
+      "venda": 9889224,
+      "custo": 12918102,
+      "lucro": -3028878,
+      "margem_pct": -30.63
+    },
+    {
+      "CLIENTE": "Fernanda",
+      "pedidos": 55,
+      "qtd": 285,
+      "venda": 9882146,
+      "custo": 8462621,
+      "lucro": 1419525,
+      "margem_pct": 14.36
+    },
+    {
+      "CLIENTE": "Úrsula",
+      "pedidos": 52,
+      "qtd": 278,
+      "venda": 9842846,
+      "custo": 11375116,
+      "lucro": -1532270,
+      "margem_pct": -15.57
+    },
+    {
+      "CLIENTE": "Gisele",
+      "pedidos": 49,
+      "qtd": 294,
+      "venda": 9828142,
+      "custo": 13317209,
+      "lucro": -3489067,
+      "margem_pct": -35.5
+    },
+    {
+      "CLIENTE": "Anastácia",
+      "pedidos": 57,
+      "qtd": 322,
+      "venda": 9806282,
+      "custo": 9514275,
+      "lucro": 292007,
+      "margem_pct": 2.98
+    },
+    {
+      "CLIENTE": "Iracema",
+      "pedidos": 58,
+      "qtd": 335,
+      "venda": 9804562,
+      "custo": 12778832,
+      "lucro": -2974270,
+      "margem_pct": -30.34
+    },
+    {
+      "CLIENTE": "Pandora",
+      "pedidos": 55,
+      "qtd": 285,
+      "venda": 9794195,
+      "custo": 11227422,
+      "lucro": -1433227,
+      "margem_pct": -14.63
+    },
+    {
+      "CLIENTE": "Fátima",
+      "pedidos": 49,
+      "qtd": 264,
+      "venda": 9745284,
+      "custo": 8300000,
+      "lucro": 1445284,
+      "margem_pct": 14.83
+    },
+    {
+      "CLIENTE": "Celina",
+      "pedidos": 49,
+      "qtd": 284,
+      "venda": 9696946,
+      "custo": 9930332,
+      "lucro": -233386,
+      "margem_pct": -2.41
+    },
+    {
+      "CLIENTE": "Clara",
+      "pedidos": 49,
+      "qtd": 253,
+      "venda": 9621240,
+      "custo": 11818471,
+      "lucro": -2197231,
+      "margem_pct": -22.84
+    },
+    {
+      "CLIENTE": "Luiza",
+      "pedidos": 49,
+      "qtd": 286,
+      "venda": 9594251,
+      "custo": 9276063,
+      "lucro": 318188,
+      "margem_pct": 3.32
+    },
+    {
+      "CLIENTE": "Viviana",
+      "pedidos": 53,
+      "qtd": 316,
+      "venda": 9586588,
+      "custo": 11266255,
+      "lucro": -1679667,
+      "margem_pct": -17.52
+    },
+    {
+      "CLIENTE": "Augusta",
+      "pedidos": 61,
+      "qtd": 347,
+      "venda": 9505414,
+      "custo": 14948134,
+      "lucro": -5442720,
+      "margem_pct": -57.26
+    },
+    {
+      "CLIENTE": "Afrodite",
+      "pedidos": 48,
+      "qtd": 268,
+      "venda": 9504564,
+      "custo": 10905214,
+      "lucro": -1400650,
+      "margem_pct": -14.74
+    },
+    {
+      "CLIENTE": "Naiara",
+      "pedidos": 54,
+      "qtd": 290,
+      "venda": 9490963,
+      "custo": 10998380,
+      "lucro": -1507417,
+      "margem_pct": -15.88
+    },
+    {
+      "CLIENTE": "Eliana",
+      "pedidos": 57,
+      "qtd": 318,
+      "venda": 9404948,
+      "custo": 13198877,
+      "lucro": -3793929,
+      "margem_pct": -40.34
+    },
+    {
+      "CLIENTE": "Ariadne",
+      "pedidos": 59,
+      "qtd": 311,
+      "venda": 9401921,
+      "custo": 12344925,
+      "lucro": -2943004,
+      "margem_pct": -31.3
+    },
+    {
+      "CLIENTE": "Maria",
+      "pedidos": 62,
+      "qtd": 354,
+      "venda": 9392020,
+      "custo": 10534568,
+      "lucro": -1142548,
+      "margem_pct": -12.17
+    },
+    {
+      "CLIENTE": "Ana",
+      "pedidos": 53,
+      "qtd": 319,
+      "venda": 9375421,
+      "custo": 13987280,
+      "lucro": -4611859,
+      "margem_pct": -49.19
+    },
+    {
+      "CLIENTE": "Hannah",
+      "pedidos": 56,
+      "qtd": 319,
+      "venda": 9370580,
+      "custo": 10798410,
+      "lucro": -1427830,
+      "margem_pct": -15.24
+    },
+    {
+      "CLIENTE": "Júlia",
+      "pedidos": 56,
+      "qtd": 334,
+      "venda": 9366293,
+      "custo": 10961293,
+      "lucro": -1595000,
+      "margem_pct": -17.03
+    },
+    {
+      "CLIENTE": "Arthur",
+      "pedidos": 60,
+      "qtd": 345,
+      "venda": 9354352,
+      "custo": 14593010,
+      "lucro": -5238658,
+      "margem_pct": -56.0
+    },
+    {
+      "CLIENTE": "Adália",
+      "pedidos": 54,
+      "qtd": 300,
+      "venda": 9338779,
+      "custo": 10999698,
+      "lucro": -1660919,
+      "margem_pct": -17.79
+    },
+    {
+      "CLIENTE": "Dulce",
+      "pedidos": 38,
+      "qtd": 210,
+      "venda": 9299171,
+      "custo": 6616795,
+      "lucro": 2682376,
+      "margem_pct": 28.85
+    },
+    {
+      "CLIENTE": "Ticiana",
+      "pedidos": 55,
+      "qtd": 339,
+      "venda": 9253218,
+      "custo": 14889686,
+      "lucro": -5636468,
+      "margem_pct": -60.91
+    },
+    {
+      "CLIENTE": "Clarissa",
+      "pedidos": 53,
+      "qtd": 328,
+      "venda": 9201607,
+      "custo": 14696102,
+      "lucro": -5494495,
+      "margem_pct": -59.71
+    },
+    {
+      "CLIENTE": "June",
+      "pedidos": 51,
+      "qtd": 322,
+      "venda": 9190202,
+      "custo": 11133200,
+      "lucro": -1942998,
+      "margem_pct": -21.14
+    },
+    {
+      "CLIENTE": "Valéria",
+      "pedidos": 43,
+      "qtd": 241,
+      "venda": 9158721,
+      "custo": 10165436,
+      "lucro": -1006715,
+      "margem_pct": -10.99
+    },
+    {
+      "CLIENTE": "Pietro",
+      "pedidos": 62,
+      "qtd": 311,
+      "venda": 9106672,
+      "custo": 10374718,
+      "lucro": -1268046,
+      "margem_pct": -13.92
+    },
+    {
+      "CLIENTE": "Gia",
+      "pedidos": 54,
+      "qtd": 280,
+      "venda": 9101405,
+      "custo": 8089850,
+      "lucro": 1011555,
+      "margem_pct": 11.11
+    },
+    {
+      "CLIENTE": "Alexandra",
+      "pedidos": 43,
+      "qtd": 222,
+      "venda": 9065641,
+      "custo": 9237594,
+      "lucro": -171953,
+      "margem_pct": -1.9
+    },
+    {
+      "CLIENTE": "Mônica",
+      "pedidos": 57,
+      "qtd": 342,
+      "venda": 9011036,
+      "custo": 11040805,
+      "lucro": -2029769,
+      "margem_pct": -22.53
+    },
+    {
+      "CLIENTE": "Kelly",
+      "pedidos": 52,
+      "qtd": 302,
+      "venda": 8993415,
+      "custo": 10926710,
+      "lucro": -1933295,
+      "margem_pct": -21.5
+    },
+    {
+      "CLIENTE": "Denise",
+      "pedidos": 51,
+      "qtd": 275,
+      "venda": 8970871,
+      "custo": 11373587,
+      "lucro": -2402716,
+      "margem_pct": -26.78
+    },
+    {
+      "CLIENTE": "Jamila",
+      "pedidos": 60,
+      "qtd": 313,
+      "venda": 8782443,
+      "custo": 9904340,
+      "lucro": -1121897,
+      "margem_pct": -12.77
+    },
+    {
+      "CLIENTE": "Lais",
+      "pedidos": 57,
+      "qtd": 320,
+      "venda": 8772317,
+      "custo": 16427951,
+      "lucro": -7655634,
+      "margem_pct": -87.27
+    },
+    {
+      "CLIENTE": "Amália",
+      "pedidos": 52,
+      "qtd": 279,
+      "venda": 8765384,
+      "custo": 10943583,
+      "lucro": -2178199,
+      "margem_pct": -24.85
+    },
+    {
+      "CLIENTE": "Tereza",
+      "pedidos": 56,
+      "qtd": 281,
+      "venda": 8711190,
+      "custo": 10973628,
+      "lucro": -2262438,
+      "margem_pct": -25.97
+    },
+    {
+      "CLIENTE": "Mara",
+      "pedidos": 50,
+      "qtd": 276,
+      "venda": 8654941,
+      "custo": 9625609,
+      "lucro": -970668,
+      "margem_pct": -11.22
+    },
+    {
+      "CLIENTE": "Julieta",
+      "pedidos": 49,
+      "qtd": 294,
+      "venda": 8644614,
+      "custo": 9006524,
+      "lucro": -361910,
+      "margem_pct": -4.19
+    },
+    {
+      "CLIENTE": "Michele",
+      "pedidos": 40,
+      "qtd": 200,
+      "venda": 8593738,
+      "custo": 6461183,
+      "lucro": 2132555,
+      "margem_pct": 24.82
+    },
+    {
+      "CLIENTE": "Antônia",
+      "pedidos": 52,
+      "qtd": 246,
+      "venda": 8586976,
+      "custo": 9269597,
+      "lucro": -682621,
+      "margem_pct": -7.95
+    },
+    {
+      "CLIENTE": "Alma",
+      "pedidos": 64,
+      "qtd": 332,
+      "venda": 8582674,
+      "custo": 8562825,
+      "lucro": 19849,
+      "margem_pct": 0.23
+    },
+    {
+      "CLIENTE": "Cássia",
+      "pedidos": 55,
+      "qtd": 335,
+      "venda": 8555495,
+      "custo": 12918020,
+      "lucro": -4362525,
+      "margem_pct": -50.99
+    },
+    {
+      "CLIENTE": "Rosa",
+      "pedidos": 48,
+      "qtd": 292,
+      "venda": 8526593,
+      "custo": 12002998,
+      "lucro": -3476405,
+      "margem_pct": -40.77
+    },
+    {
+      "CLIENTE": "Brenda",
+      "pedidos": 45,
+      "qtd": 255,
+      "venda": 8524680,
+      "custo": 11380299,
+      "lucro": -2855619,
+      "margem_pct": -33.5
+    },
+    {
+      "CLIENTE": "Heitor",
+      "pedidos": 56,
+      "qtd": 314,
+      "venda": 8519022,
+      "custo": 15901573,
+      "lucro": -7382551,
+      "margem_pct": -86.66
+    },
+    {
+      "CLIENTE": "Gabriela",
+      "pedidos": 53,
+      "qtd": 272,
+      "venda": 8510990,
+      "custo": 10768889,
+      "lucro": -2257899,
+      "margem_pct": -26.53
+    },
+    {
+      "CLIENTE": "Alícia",
+      "pedidos": 49,
+      "qtd": 264,
+      "venda": 8452833,
+      "custo": 10428820,
+      "lucro": -1975987,
+      "margem_pct": -23.38
+    },
+    {
+      "CLIENTE": "Lilian",
+      "pedidos": 55,
+      "qtd": 321,
+      "venda": 8435074,
+      "custo": 10559549,
+      "lucro": -2124475,
+      "margem_pct": -25.19
+    },
+    {
+      "CLIENTE": "Leila",
+      "pedidos": 53,
+      "qtd": 275,
+      "venda": 8430485,
+      "custo": 9091082,
+      "lucro": -660597,
+      "margem_pct": -7.84
+    },
+    {
+      "CLIENTE": "Cloé",
+      "pedidos": 55,
+      "qtd": 295,
+      "venda": 8370848,
+      "custo": 10238968,
+      "lucro": -1868120,
+      "margem_pct": -22.32
+    },
+    {
+      "CLIENTE": "Amanda",
+      "pedidos": 56,
+      "qtd": 301,
+      "venda": 8360783,
+      "custo": 10751485,
+      "lucro": -2390702,
+      "margem_pct": -28.59
+    },
+    {
+      "CLIENTE": "Marília",
+      "pedidos": 54,
+      "qtd": 285,
+      "venda": 8313184,
+      "custo": 11525077,
+      "lucro": -3211893,
+      "margem_pct": -38.64
+    },
+    {
+      "CLIENTE": "Olga",
+      "pedidos": 43,
+      "qtd": 211,
+      "venda": 8227774,
+      "custo": 8476985,
+      "lucro": -249211,
+      "margem_pct": -3.03
+    },
+    {
+      "CLIENTE": "Íris",
+      "pedidos": 53,
+      "qtd": 280,
+      "venda": 8202761,
+      "custo": 10820625,
+      "lucro": -2617864,
+      "margem_pct": -31.91
+    },
+    {
+      "CLIENTE": "Andrea",
+      "pedidos": 49,
+      "qtd": 259,
+      "venda": 8189614,
+      "custo": 10426855,
+      "lucro": -2237241,
+      "margem_pct": -27.32
+    },
+    {
+      "CLIENTE": "Isadora",
+      "pedidos": 57,
+      "qtd": 317,
+      "venda": 8188995,
+      "custo": 12523445,
+      "lucro": -4334450,
+      "margem_pct": -52.93
+    },
+    {
+      "CLIENTE": "Dafne",
+      "pedidos": 53,
+      "qtd": 303,
+      "venda": 8052576,
+      "custo": 13164073,
+      "lucro": -5111497,
+      "margem_pct": -63.48
+    },
+    {
+      "CLIENTE": "Rosana",
+      "pedidos": 57,
+      "qtd": 348,
+      "venda": 8015105,
+      "custo": 13845283,
+      "lucro": -5830178,
+      "margem_pct": -72.74
+    },
+    {
+      "CLIENTE": "Paola",
+      "pedidos": 45,
+      "qtd": 238,
+      "venda": 7978373,
+      "custo": 7209443,
+      "lucro": 768930,
+      "margem_pct": 9.64
+    },
+    {
+      "CLIENTE": "Daisy",
+      "pedidos": 56,
+      "qtd": 342,
+      "venda": 7969278,
+      "custo": 15187164,
+      "lucro": -7217886,
+      "margem_pct": -90.57
+    },
+    {
+      "CLIENTE": "Marisa",
+      "pedidos": 44,
+      "qtd": 250,
+      "venda": 7938269,
+      "custo": 10887678,
+      "lucro": -2949409,
+      "margem_pct": -37.15
+    },
+    {
+      "CLIENTE": "Luna",
+      "pedidos": 46,
+      "qtd": 229,
+      "venda": 7896706,
+      "custo": 7558038,
+      "lucro": 338668,
+      "margem_pct": 4.29
+    },
+    {
+      "CLIENTE": "Lolita",
+      "pedidos": 51,
+      "qtd": 241,
+      "venda": 7879171,
+      "custo": 8304745,
+      "lucro": -425574,
+      "margem_pct": -5.4
+    },
+    {
+      "CLIENTE": "Isaac",
+      "pedidos": 56,
+      "qtd": 331,
+      "venda": 7868154,
+      "custo": 11205976,
+      "lucro": -3337822,
+      "margem_pct": -42.42
+    },
+    {
+      "CLIENTE": "Sabrina",
+      "pedidos": 49,
+      "qtd": 251,
+      "venda": 7843939,
+      "custo": 9904558,
+      "lucro": -2060619,
+      "margem_pct": -26.27
+    },
+    {
+      "CLIENTE": "Sônia",
+      "pedidos": 47,
+      "qtd": 249,
+      "venda": 7753823,
+      "custo": 7839889,
+      "lucro": -86066,
+      "margem_pct": -1.11
+    },
+    {
+      "CLIENTE": "Elena",
+      "pedidos": 49,
+      "qtd": 274,
+      "venda": 7716907,
+      "custo": 9225677,
+      "lucro": -1508770,
+      "margem_pct": -19.55
+    },
+    {
+      "CLIENTE": "Bruna",
+      "pedidos": 50,
+      "qtd": 269,
+      "venda": 7705537,
+      "custo": 8650255,
+      "lucro": -944718,
+      "margem_pct": -12.26
+    },
+    {
+      "CLIENTE": "Sophia",
+      "pedidos": 43,
+      "qtd": 210,
+      "venda": 7687253,
+      "custo": 10155281,
+      "lucro": -2468028,
+      "margem_pct": -32.11
+    },
+    {
+      "CLIENTE": "Ludmila",
+      "pedidos": 49,
+      "qtd": 295,
+      "venda": 7660319,
+      "custo": 12020523,
+      "lucro": -4360204,
+      "margem_pct": -56.92
+    },
+    {
+      "CLIENTE": "Stephanie",
+      "pedidos": 50,
+      "qtd": 266,
+      "venda": 7654976,
+      "custo": 8256350,
+      "lucro": -601374,
+      "margem_pct": -7.86
+    },
+    {
+      "CLIENTE": "Isabel",
+      "pedidos": 46,
+      "qtd": 267,
+      "venda": 7633764,
+      "custo": 11656587,
+      "lucro": -4022823,
+      "margem_pct": -52.7
+    },
+    {
+      "CLIENTE": "Frida",
+      "pedidos": 54,
+      "qtd": 252,
+      "venda": 7627331,
+      "custo": 10273381,
+      "lucro": -2646050,
+      "margem_pct": -34.69
+    },
+    {
+      "CLIENTE": "Bárbara",
+      "pedidos": 44,
+      "qtd": 233,
+      "venda": 7611817,
+      "custo": 9188574,
+      "lucro": -1576757,
+      "margem_pct": -20.71
+    },
+    {
+      "CLIENTE": "Chiara",
+      "pedidos": 51,
+      "qtd": 282,
+      "venda": 7611802,
+      "custo": 9652808,
+      "lucro": -2041006,
+      "margem_pct": -26.81
+    },
+    {
+      "CLIENTE": "Roberta",
+      "pedidos": 50,
+      "qtd": 292,
+      "venda": 7579583,
+      "custo": 8614614,
+      "lucro": -1035031,
+      "margem_pct": -13.66
+    },
+    {
+      "CLIENTE": "Viviane",
+      "pedidos": 48,
+      "qtd": 260,
+      "venda": 7571877,
+      "custo": 9846744,
+      "lucro": -2274867,
+      "margem_pct": -30.04
+    },
+    {
+      "CLIENTE": "Adrienne",
+      "pedidos": 47,
+      "qtd": 251,
+      "venda": 7560881,
+      "custo": 8200725,
+      "lucro": -639844,
+      "margem_pct": -8.46
+    },
+    {
+      "CLIENTE": "Marcela",
+      "pedidos": 49,
+      "qtd": 295,
+      "venda": 7548998,
+      "custo": 8613970,
+      "lucro": -1064972,
+      "margem_pct": -14.11
+    },
+    {
+      "CLIENTE": "Manuela",
+      "pedidos": 46,
+      "qtd": 258,
+      "venda": 7544404,
+      "custo": 11260266,
+      "lucro": -3715862,
+      "margem_pct": -49.25
+    },
+    {
+      "CLIENTE": "Alice",
+      "pedidos": 37,
+      "qtd": 202,
+      "venda": 7527046,
+      "custo": 7968628,
+      "lucro": -441582,
+      "margem_pct": -5.87
+    },
+    {
+      "CLIENTE": "Karin",
+      "pedidos": 62,
+      "qtd": 383,
+      "venda": 7407651,
+      "custo": 12567538,
+      "lucro": -5159887,
+      "margem_pct": -69.66
+    },
+    {
+      "CLIENTE": "Luciana",
+      "pedidos": 51,
+      "qtd": 272,
+      "venda": 7357560,
+      "custo": 11143509,
+      "lucro": -3785949,
+      "margem_pct": -51.46
+    },
+    {
+      "CLIENTE": "Elvira",
+      "pedidos": 53,
+      "qtd": 282,
+      "venda": 7341379,
+      "custo": 10066299,
+      "lucro": -2724920,
+      "margem_pct": -37.12
+    },
+    {
+      "CLIENTE": "Bernadete",
+      "pedidos": 43,
+      "qtd": 190,
+      "venda": 7281045,
+      "custo": 7171693,
+      "lucro": 109352,
+      "margem_pct": 1.5
+    },
+    {
+      "CLIENTE": "Hilda",
+      "pedidos": 39,
+      "qtd": 227,
+      "venda": 7273859,
+      "custo": 9466840,
+      "lucro": -2192981,
+      "margem_pct": -30.15
+    },
+    {
+      "CLIENTE": "Elisângela",
+      "pedidos": 43,
+      "qtd": 249,
+      "venda": 7269948,
+      "custo": 9603225,
+      "lucro": -2333277,
+      "margem_pct": -32.09
+    },
+    {
+      "CLIENTE": "Ester",
+      "pedidos": 43,
+      "qtd": 184,
+      "venda": 7219969,
+      "custo": 7692965,
+      "lucro": -472996,
+      "margem_pct": -6.55
+    },
+    {
+      "CLIENTE": "Carmem",
+      "pedidos": 51,
+      "qtd": 268,
+      "venda": 7218692,
+      "custo": 9509172,
+      "lucro": -2290480,
+      "margem_pct": -31.73
+    },
+    {
+      "CLIENTE": "Yasmin",
+      "pedidos": 41,
+      "qtd": 199,
+      "venda": 7211686,
+      "custo": 7682922,
+      "lucro": -471236,
+      "margem_pct": -6.53
+    },
+    {
+      "CLIENTE": "Gaia",
+      "pedidos": 50,
+      "qtd": 297,
+      "venda": 7190335,
+      "custo": 12936361,
+      "lucro": -5746026,
+      "margem_pct": -79.91
+    },
+    {
+      "CLIENTE": "Selena",
+      "pedidos": 51,
+      "qtd": 275,
+      "venda": 7186417,
+      "custo": 8999831,
+      "lucro": -1813414,
+      "margem_pct": -25.23
+    },
+    {
+      "CLIENTE": "Isaura",
+      "pedidos": 43,
+      "qtd": 241,
+      "venda": 7035634,
+      "custo": 9724063,
+      "lucro": -2688429,
+      "margem_pct": -38.21
+    },
+    {
+      "CLIENTE": "Dalila",
+      "pedidos": 48,
+      "qtd": 271,
+      "venda": 7034041,
+      "custo": 7450808,
+      "lucro": -416767,
+      "margem_pct": -5.93
+    },
+    {
+      "CLIENTE": "Esmeralda",
+      "pedidos": 54,
+      "qtd": 285,
+      "venda": 7028127,
+      "custo": 7706413,
+      "lucro": -678286,
+      "margem_pct": -9.65
+    },
+    {
+      "CLIENTE": "Morgana",
+      "pedidos": 48,
+      "qtd": 281,
+      "venda": 7000815,
+      "custo": 6988914,
+      "lucro": 11901,
+      "margem_pct": 0.17
+    },
+    {
+      "CLIENTE": "Anabela",
+      "pedidos": 54,
+      "qtd": 276,
+      "venda": 6942542,
+      "custo": 9592886,
+      "lucro": -2650344,
+      "margem_pct": -38.18
+    },
+    {
+      "CLIENTE": "Florence",
+      "pedidos": 41,
+      "qtd": 239,
+      "venda": 6937269,
+      "custo": 8495470,
+      "lucro": -1558201,
+      "margem_pct": -22.46
+    },
+    {
+      "CLIENTE": "Alana",
+      "pedidos": 47,
+      "qtd": 273,
+      "venda": 6912898,
+      "custo": 11257425,
+      "lucro": -4344527,
+      "margem_pct": -62.85
+    },
+    {
+      "CLIENTE": "Andresa",
+      "pedidos": 47,
+      "qtd": 259,
+      "venda": 6801608,
+      "custo": 8322235,
+      "lucro": -1520627,
+      "margem_pct": -22.36
+    },
+    {
+      "CLIENTE": "Selma",
+      "pedidos": 52,
+      "qtd": 322,
+      "venda": 6757394,
+      "custo": 8436292,
+      "lucro": -1678898,
+      "margem_pct": -24.85
+    },
+    {
+      "CLIENTE": "Benício",
+      "pedidos": 36,
+      "qtd": 201,
+      "venda": 6689655,
+      "custo": 7703643,
+      "lucro": -1013988,
+      "margem_pct": -15.16
+    },
+    {
+      "CLIENTE": "Guilherme",
+      "pedidos": 51,
+      "qtd": 254,
+      "venda": 6665037,
+      "custo": 8238063,
+      "lucro": -1573026,
+      "margem_pct": -23.6
+    },
+    {
+      "CLIENTE": "Lúcia",
+      "pedidos": 44,
+      "qtd": 254,
+      "venda": 6458378,
+      "custo": 9681773,
+      "lucro": -3223395,
+      "margem_pct": -49.91
+    },
+    {
+      "CLIENTE": "Cassandra",
+      "pedidos": 53,
+      "qtd": 269,
+      "venda": 6391493,
+      "custo": 9117068,
+      "lucro": -2725575,
+      "margem_pct": -42.64
+    },
+    {
+      "CLIENTE": "Monalisa",
+      "pedidos": 46,
+      "qtd": 272,
+      "venda": 6380639,
+      "custo": 8369818,
+      "lucro": -1989179,
+      "margem_pct": -31.18
+    },
+    {
+      "CLIENTE": "Carolina",
+      "pedidos": 43,
+      "qtd": 205,
+      "venda": 6359700,
+      "custo": 7406908,
+      "lucro": -1047208,
+      "margem_pct": -16.47
+    },
+    {
+      "CLIENTE": "Iara",
+      "pedidos": 44,
+      "qtd": 229,
+      "venda": 6334870,
+      "custo": 8535878,
+      "lucro": -2201008,
+      "margem_pct": -34.74
+    },
+    {
+      "CLIENTE": "Adalfreda",
+      "pedidos": 54,
+      "qtd": 307,
+      "venda": 6303041,
+      "custo": 10592159,
+      "lucro": -4289118,
+      "margem_pct": -68.05
+    },
+    {
+      "CLIENTE": "Magnólia",
+      "pedidos": 53,
+      "qtd": 288,
+      "venda": 6231600,
+      "custo": 14112324,
+      "lucro": -7880724,
+      "margem_pct": -126.46
+    },
+    {
+      "CLIENTE": "Elen",
+      "pedidos": 42,
+      "qtd": 261,
+      "venda": 6222175,
+      "custo": 10916533,
+      "lucro": -4694358,
+      "margem_pct": -75.45
+    },
+    {
+      "CLIENTE": "Catarina",
+      "pedidos": 45,
+      "qtd": 254,
+      "venda": 6203123,
+      "custo": 9826896,
+      "lucro": -3623773,
+      "margem_pct": -58.42
+    },
+    {
+      "CLIENTE": "Berenice",
+      "pedidos": 45,
+      "qtd": 271,
+      "venda": 6199179,
+      "custo": 10716778,
+      "lucro": -4517599,
+      "margem_pct": -72.87
+    },
+    {
+      "CLIENTE": "Maitê",
+      "pedidos": 45,
+      "qtd": 260,
+      "venda": 6185904,
+      "custo": 7601884,
+      "lucro": -1415980,
+      "margem_pct": -22.89
+    },
+    {
+      "CLIENTE": "Iasmin",
+      "pedidos": 52,
+      "qtd": 273,
+      "venda": 6160058,
+      "custo": 10937267,
+      "lucro": -4777209,
+      "margem_pct": -77.55
+    },
+    {
+      "CLIENTE": "Aparecida",
+      "pedidos": 57,
+      "qtd": 342,
+      "venda": 6151468,
+      "custo": 11402182,
+      "lucro": -5250714,
+      "margem_pct": -85.36
+    },
+    {
+      "CLIENTE": "Lidia",
+      "pedidos": 39,
+      "qtd": 240,
+      "venda": 6076472,
+      "custo": 9434484,
+      "lucro": -3358012,
+      "margem_pct": -55.26
+    },
+    {
+      "CLIENTE": "Betty",
+      "pedidos": 43,
+      "qtd": 224,
+      "venda": 5991671,
+      "custo": 10661940,
+      "lucro": -4670269,
+      "margem_pct": -77.95
+    },
+    {
+      "CLIENTE": "Ágata",
+      "pedidos": 47,
+      "qtd": 255,
+      "venda": 5939953,
+      "custo": 10341836,
+      "lucro": -4401883,
+      "margem_pct": -74.11
+    },
+    {
+      "CLIENTE": "Pedro",
+      "pedidos": 31,
+      "qtd": 185,
+      "venda": 5775721,
+      "custo": 6358416,
+      "lucro": -582695,
+      "margem_pct": -10.09
+    },
+    {
+      "CLIENTE": "Joana",
+      "pedidos": 39,
+      "qtd": 211,
+      "venda": 5634290,
+      "custo": 8112287,
+      "lucro": -2477997,
+      "margem_pct": -43.98
+    },
+    {
+      "CLIENTE": "Beatriz",
+      "pedidos": 53,
+      "qtd": 293,
+      "venda": 5525704,
+      "custo": 8468060,
+      "lucro": -2942356,
+      "margem_pct": -53.25
+    },
+    {
+      "CLIENTE": "Tábata",
+      "pedidos": 50,
+      "qtd": 266,
+      "venda": 5210841,
+      "custo": 8815106,
+      "lucro": -3604265,
+      "margem_pct": -69.17
+    },
+    {
+      "CLIENTE": "Gláucia",
+      "pedidos": 46,
+      "qtd": 264,
+      "venda": 5185245,
+      "custo": 8184360,
+      "lucro": -2999115,
+      "margem_pct": -57.84
+    },
+    {
+      "CLIENTE": "Gustavo",
+      "pedidos": 45,
+      "qtd": 251,
+      "venda": 4854568,
+      "custo": 10326390,
+      "lucro": -5471822,
+      "margem_pct": -112.71
+    },
+    {
+      "CLIENTE": "Danielle",
+      "pedidos": 39,
+      "qtd": 200,
+      "venda": 4596363,
+      "custo": 9246553,
+      "lucro": -4650190,
+      "margem_pct": -101.17
+    },
+    {
+      "CLIENTE": "Adalgisa",
+      "pedidos": 34,
+      "qtd": 193,
+      "venda": 4197416,
+      "custo": 9981510,
+      "lucro": -5784094,
+      "margem_pct": -137.8
+    }
+  ]
+}
