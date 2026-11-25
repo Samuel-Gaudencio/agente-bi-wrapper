@@ -57,6 +57,40 @@
 
     .icon-btn:hover { border-color: #63a4e6; }
 
+    .auth-bar {
+      display: none;
+      background: #101417;
+      border: 1px solid #3c6997;
+      border-radius: 8px;
+      padding: 8px;
+      margin-bottom: 10px;
+      gap: 6px;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .auth-bar.open { display: flex; }
+
+    .auth-bar input {
+      background: #041836;
+      border: 1px solid #233b56;
+      color: #e6e9ef;
+      padding: 6px 8px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      outline: none;
+    }
+
+    .auth-bar button {
+      background: #2b5482;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      cursor: pointer;
+    }
+
     .scroll-area {
       flex: 1;
       overflow-y: auto;
@@ -183,6 +217,11 @@
     <button class="icon-btn" onclick="novaConversa()" title="Limpar conversa">↻</button>
   </div>
 
+  <div class="auth-bar" id="authBar">
+    <input type="password" id="pinInput" placeholder="Digite o código de acesso interno" onkeydown="if(event.key==='Enter') desbloquear()">
+    <button onclick="desbloquear()">Liberar Assistente</button>
+  </div>
+
   <div class="scroll-area" id="scrollArea">
     <div class="section-label">Espaço reservado para a IA</div>
     <div class="card-insight" id="insight1">Carregando diagnóstico...</div>
@@ -207,11 +246,45 @@
   </div>
 
   <script>
-    // COLE AQUI A URL /exec DO SEU GOOGLE APPS SCRIPT:
-    const APPS_SCRIPT_PROXY_URL = 'https://script.google.com/macros/s/AKfycbyuuc1luKVCYTdpC472xovxV8VFof6VqeGHhvUBQKad2ea0LX9TP8VZSRGAHLJrrMz8dQ/exec';
+    // COLE AQUI O TEXTO GERADO PELO PYTHON NO PASSO 2:
+    const CHAVE_CIFRADA = 'cGYeclMAYnoHfH1QCXxzTG5xcUdQT2h9YXhSQWR2Xn5AUQJWcA5JRl52Y0F4FR1BQgFRS2A=';
 
     let baseDados = null;
     let historicoChat = [];
+
+    function decifrarChave(pin) {
+      try {
+        const bytes = Uint8Array.from(atob(CHAVE_CIFRADA), c => c.charCodeAt(0));
+        let res = '';
+        for (let i = 0; i < bytes.length; i++) {
+          res += String.fromCharCode(bytes[i] ^ pin.charCodeAt(i % pin.length));
+        }
+        return res.startsWith('AIza') ? res : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function obterApiKey() {
+      const pinSalvo = localStorage.getItem('bi_piloto_pin');
+      if (!pinSalvo) return null;
+      return decifrarChave(pinSalvo);
+    }
+
+    if (!obterApiKey()) {
+      document.getElementById('authBar').classList.add('open');
+    }
+
+    function desbloquear() {
+      const pin = document.getElementById('pinInput').value.trim();
+      const key = decifrarChave(pin);
+      if (!key) {
+        alert('Código de acesso inválido.');
+        return;
+      }
+      localStorage.setItem('bi_piloto_pin', pin);
+      document.getElementById('authBar').classList.remove('open');
+    }
 
     async function carregarBase() {
       try {
@@ -261,7 +334,7 @@
       });
     }
 
-    async function chamarGeminiViaAppsScript(pergunta) {
+    async function chamarGeminiDireto(pergunta, apiKey) {
       const modelos = ['gemini-3.8-flash', 'gemini-3.1-flash-lite', 'gemini-2.5-pro'];
       const contextoJson = montarContextoCompacto(pergunta);
 
@@ -286,30 +359,26 @@ Diretrizes:
       }
 
       for (const modelo of modelos) {
-        // text/plain evita preflight OPTIONS (CORS) no Google Apps Script
-        const resp = await fetch(APPS_SCRIPT_PROXY_URL, {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
+        const resp = await fetch(url, {
           method: 'POST',
-          redirect: 'follow',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            modelo: modelo,
-            payload: {
-              systemInstruction: { parts: [{ text: instrucaoSistema }] },
-              contents: historicoChat,
-              generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
-            }
+            systemInstruction: { parts: [{ text: instrucaoSistema }] },
+            contents: historicoChat,
+            generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
           })
         });
 
         const data = await resp.json();
 
-        if (data.error) {
-          const msg = data.error.message || '';
-          if (msg.includes('503') || msg.includes('429') || msg.toLowerCase().includes('high demand') || msg.toLowerCase().includes('overloaded')) {
-            continue;
-          }
+        if (resp.status === 503 || resp.status === 429) {
+          continue;
+        }
+
+        if (!resp.ok || data.error) {
           historicoChat.pop();
-          throw new Error(msg || 'Erro na API do Gemini');
+          throw new Error(data.error?.message || 'Erro na API do Gemini');
         }
 
         const texto = data.candidates?.[0]?.content?.parts?.map(p => p.text).join('') || '';
@@ -327,6 +396,13 @@ Diretrizes:
     }
 
     async function enviar() {
+      const apiKey = obterApiKey();
+      if (!apiKey) {
+        document.getElementById('authBar').classList.add('open');
+        document.getElementById('pinInput').focus();
+        return;
+      }
+
       const input = document.getElementById('pergunta');
       const btn = document.getElementById('btnEnviar');
       const scrollArea = document.getElementById('scrollArea');
@@ -351,7 +427,7 @@ Diretrizes:
       scrollArea.scrollTop = scrollArea.scrollHeight;
 
       try {
-        const resposta = await chamarGeminiViaAppsScript(texto);
+        const resposta = await chamarGeminiDireto(texto, apiKey);
         botDiv.className = 'card-insight dinamico';
         botDiv.innerHTML = formatarTexto(resposta);
       } catch (err) {
