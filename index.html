@@ -27,7 +27,6 @@
       align-items: center;
       margin-bottom: 12px;
       flex-shrink: 0;
-      gap: 6px;
     }
 
     .title {
@@ -46,12 +45,6 @@
       flex-shrink: 0;
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
     .icon-btn {
       background: #101417;
       border: 1px solid #233b56;
@@ -62,45 +55,7 @@
       cursor: pointer;
     }
 
-    .icon-btn:hover {
-      border-color: #63a4e6;
-    }
-
-    /* Modal simples para configurar a API Key uma única vez no navegador */
-    .config-bar {
-      display: none;
-      background: #101417;
-      border: 1px solid #3c6997;
-      border-radius: 8px;
-      padding: 8px;
-      margin-bottom: 10px;
-      gap: 6px;
-      flex-direction: column;
-    }
-
-    .config-bar.open {
-      display: flex;
-    }
-
-    .config-bar input {
-      background: #041836;
-      border: 1px solid #233b56;
-      color: #e6e9ef;
-      padding: 6px 8px;
-      border-radius: 5px;
-      font-size: 11.5px;
-      outline: none;
-    }
-
-    .config-bar button {
-      background: #2b5482;
-      color: #fff;
-      border: none;
-      padding: 5px;
-      border-radius: 5px;
-      font-size: 11.5px;
-      cursor: pointer;
-    }
+    .icon-btn:hover { border-color: #63a4e6; }
 
     .scroll-area {
       flex: 1;
@@ -225,16 +180,7 @@
       </svg>
       <span>Assistente de análise</span>
     </div>
-    <div class="header-actions">
-      <button class="icon-btn" onclick="novaConversa()" title="Limpar conversa">↻</button>
-      <button class="icon-btn" onclick="toggleConfig()" title="Configurar API Key">🔑</button>
-    </div>
-  </div>
-
-  <!-- Painel discreto para salvar a API Key localmente no navegador (não fica exposta no GitHub) -->
-  <div class="config-bar" id="configBar">
-    <input type="password" id="apiKeyInput" placeholder="Cole sua GEMINI_API_KEY aqui">
-    <button onclick="salvarChave()">Salvar Chave no Navegador</button>
+    <button class="icon-btn" onclick="novaConversa()" title="Limpar conversa">↻</button>
   </div>
 
   <div class="scroll-area" id="scrollArea">
@@ -261,10 +207,12 @@
   </div>
 
   <script>
-    let baseDados = null;
-    let historicoChat = []; // Mantém a memória da conversa no próprio navegador
+    // COLE AQUI A URL /exec DO SEU GOOGLE APPS SCRIPT:
+    const APPS_SCRIPT_PROXY_URL = 'https://script.google.com/macros/s/AKfycbyuuc1luKVCYTdpC472xovxV8VFof6VqeGHhvUBQKad2ea0LX9TP8VZSRGAHLJrrMz8dQ/exec';
 
-    // Carrega o dados_ia.json gerado pelo Python
+    let baseDados = null;
+    let historicoChat = [];
+
     async function carregarBase() {
       try {
         const resp = await fetch('./dados_ia.json?v=' + Date.now());
@@ -276,24 +224,6 @@
       }
     }
     carregarBase();
-
-    // Gestão da API Key no navegador (sem vazar no repositório público)
-    const keyInput = document.getElementById('apiKeyInput');
-    keyInput.value = localStorage.getItem('gemini_bi_key') || '';
-    if (!keyInput.value) {
-      document.getElementById('configBar').classList.add('open');
-    }
-
-    function toggleConfig() {
-      document.getElementById('configBar').classList.toggle('open');
-    }
-
-    function salvarChave() {
-      const val = keyInput.value.trim();
-      if (!val) return;
-      localStorage.setItem('gemini_bi_key', val);
-      document.getElementById('configBar').classList.remove('open');
-    }
 
     function novaConversa() {
       historicoChat = [];
@@ -311,7 +241,6 @@
 
     function montarContextoCompacto(pergunta) {
       if (!baseDados) return '';
-      // Filtra Top 25 clientes + qualquer cliente mencionado na pergunta
       const qLower = pergunta.toLowerCase();
       const top25 = baseDados.clientes.slice(0, 25);
       const extras = baseDados.clientes.filter(c => qLower.includes(c.CLIENTE.toLowerCase()));
@@ -332,7 +261,7 @@
       });
     }
 
-    async function chamarGeminiDireto(pergunta, apiKey) {
+    async function chamarGeminiViaAppsScript(pergunta) {
       const modelos = ['gemini-3.8-flash', 'gemini-3.1-flash-lite', 'gemini-2.5-pro'];
       const contextoJson = montarContextoCompacto(pergunta);
 
@@ -357,26 +286,29 @@ Diretrizes:
       }
 
       for (const modelo of modelos) {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
-        const resp = await fetch(url, {
+        // text/plain evita preflight OPTIONS (CORS) no Google Apps Script
+        const resp = await fetch(APPS_SCRIPT_PROXY_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
-            systemInstruction: { parts: [{ text: instrucaoSistema }] },
-            contents: historicoChat,
-            generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
+            modelo: modelo,
+            payload: {
+              systemInstruction: { parts: [{ text: instrucaoSistema }] },
+              contents: historicoChat,
+              generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
+            }
           })
         });
 
         const data = await resp.json();
 
-        if (resp.status === 503 || resp.status === 429) {
-          continue; // Pula automaticamente para o próximo modelo se der pico de demanda
-        }
-
-        if (!resp.ok || data.error) {
+        if (data.error) {
+          const msg = data.error.message || '';
+          if (msg.includes('503') || msg.includes('429') || msg.toLowerCase().includes('high demand') || msg.toLowerCase().includes('overloaded')) {
+            continue;
+          }
           historicoChat.pop();
-          throw new Error(data.error?.message || 'Erro na API do Gemini');
+          throw new Error(msg || 'Erro na API do Gemini');
         }
 
         const texto = data.candidates?.[0]?.content?.parts?.map(p => p.text).join('') || '';
@@ -398,13 +330,7 @@ Diretrizes:
       const btn = document.getElementById('btnEnviar');
       const scrollArea = document.getElementById('scrollArea');
       const texto = input.value.trim();
-      const apiKey = localStorage.getItem('gemini_bi_key') || '';
 
-      if (!apiKey) {
-        document.getElementById('configBar').classList.add('open');
-        keyInput.focus();
-        return;
-      }
       if (!texto) return;
 
       const userDiv = document.createElement('div');
@@ -424,7 +350,7 @@ Diretrizes:
       scrollArea.scrollTop = scrollArea.scrollHeight;
 
       try {
-        const resposta = await chamarGeminiDireto(texto, apiKey);
+        const resposta = await chamarGeminiViaAppsScript(texto);
         botDiv.className = 'card-insight dinamico';
         botDiv.innerHTML = formatarTexto(resposta);
       } catch (err) {
