@@ -226,6 +226,7 @@
     <div class="section-label">Espaço reservado para a IA</div>
     <div class="card-insight" id="insight1">Carregando diagnóstico...</div>
     <div class="card-insight muted" id="insight2">Carregando indicadores...</div>
+    <div class="section-label" id="atualizado" style="opacity:.7;font-size:10.5px;"></div>
 
     <div class="section-label">Sugestões</div>
     <div class="suggestions-list">
@@ -246,14 +247,35 @@
   </div>
 
   <script>
-    // COLE AQUI O TEXTO GERADO PELO PYTHON NO PASSO 2:
     const CHAVE_CIFRADA = 'c2kddVAAYXoEc35XCnxwTG1+ckBTT2t9YndRRmd2XX5DXgFRcw5KRl15YEZ7FR5BQQ5STGM=';
 
-    let baseDados = null;
-    let historicoChat = [];
+    // Modelos em ordem de preferência (rápidos primeiro). Se um não existir/estiver
+    // sobrecarregado, o próximo é usado automaticamente.
+    const MODELOS = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
+    const API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
+    const TIMEOUT_MS = 40000;      // tempo máximo sem receber nada do modelo
+    const MAX_MENSAGENS = 12;      // histórico enviado ao modelo (pares pergunta/resposta recentes)
 
+    let baseDados = null;
+    let basePronta = null;
+    let historicoChat = [];
+    const modelosIndisponiveis = new Set();   // modelos que responderam 404 nesta sessão
+    const memoria = {};                        // fallback quando o navegador bloqueia localStorage
+
+    // ---------- Armazenamento seguro (Looker Studio roda em iframe e pode bloquear localStorage) ----------
+    function lerPin() {
+      try { return localStorage.getItem('bi_piloto_pin') || memoria.pin || null; }
+      catch (e) { return memoria.pin || null; }
+    }
+    function salvarPin(pin) {
+      memoria.pin = pin;
+      try { localStorage.setItem('bi_piloto_pin', pin); } catch (e) { /* ok: fica só em memória */ }
+    }
+
+    // ---------- Acesso ----------
     function decifrarChave(pin) {
       try {
+        if (!pin) return null;
         const bytes = Uint8Array.from(atob(CHAVE_CIFRADA), c => c.charCodeAt(0));
         let res = '';
         for (let i = 0; i < bytes.length; i++) {
@@ -266,9 +288,7 @@
     }
 
     function obterApiKey() {
-      const pinSalvo = localStorage.getItem('bi_piloto_pin');
-      if (!pinSalvo) return null;
-      return decifrarChave(pinSalvo);
+      return decifrarChave(lerPin());
     }
 
     if (!obterApiKey()) {
@@ -282,21 +302,28 @@
         alert('Código de acesso inválido.');
         return;
       }
-      localStorage.setItem('bi_piloto_pin', pin);
+      salvarPin(pin);
       document.getElementById('authBar').classList.remove('open');
     }
 
+    // ---------- Base ----------
     async function carregarBase() {
       try {
-        const resp = await fetch('./dados_ia.json?v=' + Date.now());
-        baseDados = await resp.json();
-        document.getElementById('insight1').textContent = baseDados.insights_iniciais.insight1;
-        document.getElementById('insight2').textContent = baseDados.insights_iniciais.insight2;
+        const resp = await fetch('./dados_ia.json?v=' + Date.now(), { cache: 'no-store' });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const json = await resp.json();
+        if (!json || !json.geral || !json.insights_iniciais) throw new Error('formato inesperado');
+        baseDados = json;
+        document.getElementById('insight1').textContent = json.insights_iniciais.insight1;
+        document.getElementById('insight2').textContent = json.insights_iniciais.insight2;
+        const at = document.getElementById('atualizado');
+        if (at && json.atualizado_em) at.textContent = 'Dados atualizados em ' + json.atualizado_em;
       } catch (e) {
-        document.getElementById('insight1').textContent = 'Erro ao carregar dados_ia.json.';
+        document.getElementById('insight1').textContent = 'Não foi possível carregar os dados (dados_ia.json). Recarregue a página.';
+        document.getElementById('insight2').textContent = '';
       }
     }
-    carregarBase();
+    basePronta = carregarBase();
 
     function novaConversa() {
       historicoChat = [];
@@ -308,107 +335,231 @@
       enviar();
     }
 
+    // ---------- Formatação segura da resposta ----------
+    function escaparHtml(t) {
+      return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
     function formatarTexto(texto) {
-      return texto.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffffff;">$1</strong>');
+      let h = escaparHtml(texto);
+      h = h.replace(/^[ \t]*[*\-][ \t]+/gm, '• ');
+      h = h.replace(/\*\*(.+?)\*\*/g, '<strong style="color:#ffffff;">$1</strong>');
+      return h;
     }
 
-    function montarContextoCompacto(pergunta) {
-      if (!baseDados) return '';
-      const qLower = pergunta.toLowerCase();
-      const top25 = baseDados.clientes.slice(0, 25);
-      const extras = baseDados.clientes.filter(c => qLower.includes(c.CLIENTE.toLowerCase()));
-      const clientesContexto = [...top25];
-      extras.forEach(ex => {
-        if (!clientesContexto.some(c => c.CLIENTE === ex.CLIENTE)) clientesContexto.push(ex);
-      });
-
-      return JSON.stringify({
-        geral: baseDados.geral,
-        por_ano: baseDados.por_ano,
-        por_categoria: baseDados.por_categoria,
-        por_produto: baseDados.por_produto,
-        por_regiao: baseDados.por_regiao,
-        por_mes: baseDados.por_mes,
-        cat_mes_recente: baseDados.cat_mes_recente,
-        clientes_relevantes: clientesContexto
-      });
+    // ---------- Contexto ----------
+    function normalizar(s) {
+      return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
     }
 
-    async function chamarGeminiDireto(pergunta, apiKey) {
-      const modelos = ['gemini-3.8-flash', 'gemini-3.1-flash-lite', 'gemini-2.5-pro'];
-      const contextoJson = montarContextoCompacto(pergunta);
+    function montarSistema() {
+      const b = baseDados;
+      const contexto = JSON.stringify({
+        periodo: b.periodo,
+        geral: b.geral,
+        resumo_ultimo_mes: b.resumo_ultimo_mes,
+        resumo_mes_anterior: b.resumo_mes_anterior,
+        por_ano: b.por_ano,
+        por_mes: b.por_mes,
+        por_categoria: b.por_categoria,
+        por_produto: b.por_produto,
+        por_regiao: b.por_regiao,
+        cat_mes_recente: b.cat_mes_recente,
+        produto_mes_recente: b.produto_mes_recente,
+        regiao_mes_recente: b.regiao_mes_recente,
+        clientes_maior_crescimento: b.clientes_maior_crescimento,
+        clientes_maior_queda: b.clientes_maior_queda,
+        top_clientes: (b.clientes || []).slice(0, 25)
+      });
 
-      const instrucaoSistema = `Você é o Assistente de Análise de BI integrado ao dashboard de vendas.
-Responda EXCLUSIVAMENTE com base nos dados JSON fornecidos (que representam a soma exata das 10.000 linhas).
-Diretrizes:
-1. Seja objetivo, executivo e direto ao ponto.
-2. Use bullet points curtos e destaque em **negrito** nomes de produtos/categorias e valores principais (em R$ e %).
-3. Compare margens com a média geral da empresa (${baseDados?.geral?.margem_pct || 32.34}%).
-4. Se o usuário pedir "Resumir o mês" sem especificar qual, use o último mês disponível na série e compare com o anterior.`;
+      return `Você é o Assistente de Análise de BI integrado ao dashboard de vendas. Responda sempre em português do Brasil.
 
-      if (historicoChat.length === 0) {
-        historicoChat.push({
-          role: 'user',
-          parts: [{ text: `BASE DE DADOS CONSOLIDADA:\n${contextoJson}\n\nPERGUNTA: ${pergunta}` }]
-        });
-      } else {
-        historicoChat.push({
-          role: 'user',
-          parts: [{ text: pergunta }]
-        });
-      }
+REGRAS
+1. Use EXCLUSIVAMENTE os dados JSON abaixo (totais exatos de ${b.geral.pedidos} pedidos). Nunca invente números. Se a informação não existir nos dados, diga claramente que não está disponível na base consolidada e sugira o que dá para responder.
+2. Valores em R$ no formato brasileiro (R$ 1.234,56) e percentuais com 1 casa decimal.
+3. Margem = lucro ÷ venda. Compare com a margem média geral da empresa (${b.geral.margem_pct}%). Quando houver campos prontos (margem_pct, venda_var_pct, variacao_pct, variacao_rs), use-os em vez de recalcular.
+4. "Resumir o mês" sem mês definido: use periodo.ultimo_mes (resumo_ultimo_mes) e compare com periodo.mes_anterior (resumo_mes_anterior); detalhe produtos/categorias/regiões a partir de produto_mes_recente, cat_mes_recente e regiao_mes_recente.
+5. "Quais clientes crescem?": use clientes_maior_crescimento (e clientes_maior_queda se pedirem quem caiu), informando a janela comparada (periodo.janela_atual x periodo.janela_anterior).
+6. Estilo: executivo e direto, bullets curtos com "-" ou "•", **negrito** em produtos/categorias e valores principais. Até ~150 palavras, salvo se pedirem mais detalhe.
 
-      for (const modelo of modelos) {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
-        const resp = await fetch(url, {
+DADOS (JSON):
+${contexto}`;
+    }
+
+    // Dados de um cliente citado na pergunta que não esteja no top 25 já enviado
+    function dadosClienteCitado(pergunta) {
+      const q = ' ' + normalizar(pergunta).replace(/[^a-z0-9]+/g, ' ') + ' ';
+      const top = new Set((baseDados.clientes || []).slice(0, 25).map(c => c.CLIENTE));
+      const achados = (baseDados.clientes || []).filter(c =>
+        !top.has(c.CLIENTE) && q.includes(' ' + normalizar(c.CLIENTE).replace(/[^a-z0-9]+/g, ' ') + ' '));
+      return achados.length ? '\n\n[DADOS ADICIONAIS DOS CLIENTES CITADOS]\n' + JSON.stringify(achados) : '';
+    }
+
+    // ---------- Chamada à API (com streaming) ----------
+    function erroApi(status, mensagem, extra) {
+      const e = new Error(mensagem || ('Erro ' + status));
+      e.status = status;
+      Object.assign(e, extra || {});
+      return e;
+    }
+
+    function corpoRequisicao(comPensamentoRapido) {
+      const generationConfig = { temperature: 0.1, maxOutputTokens: 8192 };
+      if (comPensamentoRapido) generationConfig.thinkingConfig = { thinkingLevel: 'low' };
+      return {
+        systemInstruction: { parts: [{ text: montarSistema() }] },
+        contents: historicoChat,
+        generationConfig
+      };
+    }
+
+    async function chamarModelo(modelo, apiKey, comPensamentoRapido, onTexto) {
+      const ctrl = new AbortController();
+      let timer;
+      const armar = () => { clearTimeout(timer); timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS); };
+      armar();
+
+      let texto = '';
+      let finish = null;
+      let bloqueio = null;
+
+      const processar = (obj) => {
+        if (obj.error) throw erroApi(obj.error.code || 500, obj.error.message);
+        if (obj.promptFeedback && obj.promptFeedback.blockReason) bloqueio = obj.promptFeedback.blockReason;
+        const cand = obj.candidates && obj.candidates[0];
+        if (!cand) return;
+        if (cand.finishReason) finish = cand.finishReason;
+        const partes = (cand.content && cand.content.parts) || [];
+        for (const p of partes) {
+          if (p.text && !p.thought) texto += p.text;
+        }
+        if (texto) onTexto(texto);
+      };
+
+      try {
+        const resp = await fetch(`${API_BASE}/${modelo}:streamGenerateContent?alt=sse`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            systemInstruction: { parts: [{ text: instrucaoSistema }] },
-            contents: historicoChat,
-            generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
-          })
+          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+          body: JSON.stringify(corpoRequisicao(comPensamentoRapido)),
+          signal: ctrl.signal
         });
 
-        const data = await resp.json();
-
-        if (resp.status === 503 || resp.status === 429) {
-          continue;
+        if (!resp.ok) {
+          let msg = '';
+          try { msg = (await resp.json()).error?.message || ''; } catch (e) { /* corpo não-JSON */ }
+          throw erroApi(resp.status, msg);
         }
 
-        if (!resp.ok || data.error) {
-          historicoChat.pop();
-          throw new Error(data.error?.message || 'Erro na API do Gemini');
+        if (resp.body && resp.body.getReader) {
+          const reader = resp.body.getReader();
+          const dec = new TextDecoder();
+          let buf = '';
+          const consumirEventos = (final) => {
+            const eventos = buf.split(/\r?\n\r?\n/);
+            buf = final ? '' : eventos.pop();
+            for (const ev of final ? eventos.filter(Boolean) : eventos) {
+              const dados = ev.split(/\r?\n/).filter(l => l.startsWith('data:')).map(l => l.slice(5).trim()).join('\n');
+              if (!dados || dados === '[DONE]') continue;
+              let obj;
+              try { obj = JSON.parse(dados); } catch (e) { continue; }
+              processar(obj);
+            }
+          };
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            armar();
+            buf += dec.decode(value, { stream: true });
+            consumirEventos(false);
+          }
+          buf += dec.decode();
+          consumirEventos(true);
+        } else {
+          // navegador sem streaming: lê a resposta inteira
+          const txt = await resp.text();
+          for (const ev of txt.split(/\r?\n\r?\n/)) {
+            const dados = ev.split(/\r?\n/).filter(l => l.startsWith('data:')).map(l => l.slice(5).trim()).join('\n');
+            if (dados) { try { processar(JSON.parse(dados)); } catch (e) { if (e.status) throw e; } }
+          }
         }
-
-        const texto = data.candidates?.[0]?.content?.parts?.map(p => p.text).join('') || '';
-        if (!texto) {
-          historicoChat.pop();
-          throw new Error('Resposta vazia do modelo.');
+      } catch (e) {
+        if (texto) {   // já recebemos parte da resposta: devolve o que houver
+          return { texto: texto + '\n\n(resposta interrompida — pergunte novamente se precisar do restante)', finish: 'INTERROMPIDA' };
         }
-
-        historicoChat.push({ role: 'model', parts: [{ text: texto }] });
-        return texto;
+        if (e.name === 'AbortError') throw erroApi(0, 'Tempo esgotado', { tentarOutro: true });
+        if (e instanceof TypeError) throw erroApi(0, 'Sem conexão com a API', { tentarOutro: true });
+        throw e;
+      } finally {
+        clearTimeout(timer);
       }
 
-      historicoChat.pop();
-      throw new Error('Modelos temporariamente sobrecarregados. Tente novamente em instantes.');
+      if (!texto) {
+        if (bloqueio) throw erroApi(400, 'Pergunta bloqueada pelo filtro de segurança (' + bloqueio + ').', { fatal: true });
+        throw erroApi(0, 'Resposta vazia do modelo', { tentarOutro: true });
+      }
+      if (finish === 'MAX_TOKENS') texto += '\n\n(resposta cortada — peça um resumo mais curto)';
+      return { texto, finish };
     }
 
-    async function enviar() {
+    function mensagemAmigavel(e) {
+      const m = e.message || '';
+      if (e.status === 400 && /API key/i.test(m)) return 'A chave de API é inválida ou expirou. Avise o responsável pelo assistente.';
+      if (e.status === 401 || e.status === 403) return 'A chave de API não tem permissão (ou o domínio não está autorizado). Avise o responsável pelo assistente.';
+      if (e.status === 429) return 'Muitas perguntas em pouco tempo (limite da API). Aguarde alguns segundos e tente de novo.';
+      if (e.status === 0 && /Tempo/.test(m)) return 'A IA demorou demais para responder. Tente novamente.';
+      if (e.status === 0 && /conex/.test(m)) return 'Sem conexão com a API do Gemini. Verifique a internet e tente novamente.';
+      if (e.status >= 500 || e.tentarOutro) return 'Os modelos de IA estão temporariamente indisponíveis. Tente novamente em instantes.';
+      return m || 'Erro inesperado ao consultar a IA.';
+    }
+
+    async function perguntarIA(pergunta, onTexto) {
+      await basePronta;
+      if (!baseDados) throw new Error('Os dados ainda não foram carregados. Recarregue a página.');
       const apiKey = obterApiKey();
-      if (!apiKey) {
-        document.getElementById('authBar').classList.add('open');
-        document.getElementById('pinInput').focus();
-        return;
+      if (!apiKey) throw new Error('Digite o código de acesso para liberar o assistente.');
+
+      historicoChat.push({ role: 'user', parts: [{ text: pergunta + dadosClienteCitado(pergunta) }] });
+      while (historicoChat.length > MAX_MENSAGENS) historicoChat.splice(0, 2);  // descarta o par mais antigo
+
+      let ultimoErro = null;
+      for (const modelo of MODELOS) {
+        if (modelosIndisponiveis.has(modelo)) continue;
+        let comPensamentoRapido = true;
+        for (let tentativa = 0; tentativa < 2; tentativa++) {
+          try {
+            const r = await chamarModelo(modelo, apiKey, comPensamentoRapido, onTexto);
+            historicoChat.push({ role: 'model', parts: [{ text: r.texto }] });
+            return r.texto;
+          } catch (e) {
+            ultimoErro = e;
+            // parâmetro de "thinking" não aceito por este modelo: repete sem ele
+            if (e.status === 400 && /think/i.test(e.message) && comPensamentoRapido) { comPensamentoRapido = false; continue; }
+            break;
+          }
+        }
+        const e = ultimoErro;
+        if (e.fatal || e.status === 401 || (e.status === 400 && /API key/i.test(e.message))) break;
+        if (e.status === 404) modelosIndisponiveis.add(modelo);
+        // 404, 403 (modelo sem acesso), 429, 5xx, timeout, resposta vazia -> tenta o próximo modelo
       }
 
+      historicoChat.pop();  // remove a pergunta que não foi respondida
+      throw new Error(mensagemAmigavel(ultimoErro || new Error('')));
+    }
+
+    // ---------- Interface ----------
+    async function enviar() {
       const input = document.getElementById('pergunta');
       const btn = document.getElementById('btnEnviar');
       const scrollArea = document.getElementById('scrollArea');
       const texto = input.value.trim();
+      if (!texto || input.disabled) return;
 
-      if (!texto) return;
+      if (!obterApiKey()) {
+        document.getElementById('authBar').classList.add('open');
+        document.getElementById('pinInput').focus();
+        return;
+      }
 
       const userDiv = document.createElement('div');
       userDiv.className = 'card-user dinamico';
@@ -426,11 +577,29 @@ Diretrizes:
       scrollArea.appendChild(botDiv);
       scrollArea.scrollTop = scrollArea.scrollHeight;
 
+      let pendente = null;
+      let concluido = false;
+      const atualizar = (parcial) => {
+        pendente = parcial;
+        if (atualizar.agendado) return;
+        atualizar.agendado = true;
+        requestAnimationFrame(() => {
+          atualizar.agendado = false;
+          if (concluido) return;   // a versão final já foi desenhada
+          botDiv.className = 'card-insight dinamico';
+          botDiv.innerHTML = formatarTexto(pendente);
+          scrollArea.scrollTop = scrollArea.scrollHeight;
+        });
+      };
+
       try {
-        const resposta = await chamarGeminiDireto(texto, apiKey);
+        const resposta = await perguntarIA(texto, atualizar);
+        concluido = true;
         botDiv.className = 'card-insight dinamico';
         botDiv.innerHTML = formatarTexto(resposta);
       } catch (err) {
+        concluido = true;
+        botDiv.className = 'card-insight muted dinamico';
         botDiv.textContent = 'Erro: ' + err.message;
       } finally {
         input.disabled = false;
